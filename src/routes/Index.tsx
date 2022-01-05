@@ -1,3 +1,5 @@
+/// <reference path="../index.d.ts" />
+
 import React, { Component, lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { observer } from 'mobx-react'
@@ -17,6 +19,11 @@ interface State {
 
 }
 
+/* 用于 微前端 qiankun */
+let basename:any = undefined
+if (window.__POWERED_BY_QIANKUN__) {
+  basename = '/sd-department-admin-2'
+}
 
 @observer
 class Router extends Component<Props, State> {
@@ -24,7 +31,7 @@ class Router extends Component<Props, State> {
 
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <Suspense fallback={<Spin />}>
           <Routes>
             <Route path="/" element={<App />}>

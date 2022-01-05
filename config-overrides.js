@@ -1,8 +1,10 @@
 const port = process.env.PORT
+/* 用于 微前端 qiankun */
 module.exports = {
   webpack: (config) => {
-    config.output.library = 'demo1';
+    config.output.library = 'sd-department-admin-2';
     config.output.libraryTarget = 'umd';
+    // TODO: 上线前需修改
     config.output.publicPath = `http://localhost:${port}/`
     return config;
   },

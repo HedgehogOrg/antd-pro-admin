@@ -1,7 +1,8 @@
 {
-  "name": "demo1",
+  "name": "sd-department-admin-2",
   "version": "0.1.0",
   "private": true,
+  "main": "index.tsx",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@testing-library/jest-dom": "^5.16.1",
@@ -47,8 +48,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "main": "index.tsx",
-  "author": "hedgehog <imhedgehog@qq.com>",
-  "license": "MIT"
+  }
 }
