@@ -1,12 +1,16 @@
 import { Button } from "antd"
 import { useNavigate } from "react-router-dom";
-import userInfo from '../stores/user'
+import user from '../stores/user'
 
 export default function Go (props: any) {
   const navigate = useNavigate();
 
   function clickHome() {
-    userInfo.setLogin(!userInfo.login)
+    if (user.loginStatus > 0) {
+      user.logout()
+    } else {
+      user.login();
+    }
     navigate(props.url)
   }
   return (
