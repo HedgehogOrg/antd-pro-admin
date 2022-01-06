@@ -1,4 +1,7 @@
+const mockMiddleware = require('./mock/mock-middleware')
+
 const port = process.env.PORT
+
 module.exports = {
   webpack: (config) => {
     config.output.library = 'sd-department-admin-2';
@@ -13,6 +16,11 @@ module.exports = {
       const config = configFunction(proxy, allowedHost);
       config.headers = {
         'Access-Control-Allow-Origin': '*'
+      }
+      config.setupMiddlewares = (middlewares, devServer) => {
+        /* mock */
+        middlewares.push(mockMiddleware)
+        return middlewares;
       }
       return config;
     }
