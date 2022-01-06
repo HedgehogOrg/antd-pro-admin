@@ -10,9 +10,8 @@ import Router from './routes/Index';
 
 const render = (props?: any) => {
   ReactDOM.render(
-    <React.StrictMode>
-      <Router></Router>
-    </React.StrictMode>, props.container ? props.container.querySelector('#root') : document.getElementById('root'));
+    <Router></Router>, props.container ? props.container.querySelector('#root') : document.getElementById('root')
+  );
 }
 
 /* 非qiankun的独立运行状态下 */

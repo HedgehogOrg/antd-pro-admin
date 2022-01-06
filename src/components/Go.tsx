@@ -6,7 +6,7 @@ export default function Go (props: any) {
   const navigate = useNavigate();
 
   function clickHome() {
-    userInfo.changeIsLogin()
+    userInfo.setLogin(!userInfo.login)
     navigate(props.url)
   }
   return (
