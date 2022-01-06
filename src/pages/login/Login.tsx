@@ -1,41 +1,51 @@
-import React, { Component, createRef } from 'react';
-import { Form, Input, Button, Checkbox, FormInstance } from 'antd';
-import UserInfo from '../../stores/user';
-import { useNavigate } from 'react-router-dom';
-import Go from '../../components/Go';
+import { Form, Input, Button, Checkbox } from 'antd';
+import user from '../../stores/user';
+import { useLocation, useNavigate } from 'react-router-dom';
+import style from './login.module.css'
 
-function LoginSuccess(values: any) {
-
-  // const navigate = useNavigate();
-  // UserInfo.setLogin(true)
-  // localStorage.setItem('isLogin', '1');
-  // // 模拟生成一些数据
-  // UserInfo.setUserInfo(Object.assign({}, values, { role: { type: 1, name: '超级管理员' } }));
-  // localStorage.setItem('userInfo', JSON.stringify(Object.assign({}, values, { role: { type: 1, name: '超级管理员' } })));
-  // navigate('/dashboard');
+// hack ts 报类型未知的错
+interface stateType {
+  from: { pathname: string }
 }
 
 export default function Login() {
   const [form] = Form.useForm()
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const state = location.state as stateType;
+  const from = state?.from?.pathname || '/' ;
 
+  // 本地校验成功
   const onFinish = (values: any) => {
     console.log('Success:', values);
-
-    // LoginSuccess(values)
-    navigate('/dashboard')
+    checkLogin(values)
   };
 
+  const checkLogin = (values: any) => {
+    // TODO post
+    loginSuccess(values)
+  }
+
+  const loginSuccess = (values: any) => {
+    // 记录登录状态
+    user.login()
+    // 模拟生成一些数据
+    delete values.password
+    user.setUser(Object.assign({}, values, { role: { type: 1, name: '超级管理员' } }));
+    // 跳转
+    navigate(from, { replace: true });
+  }
+
+  // 本地校验失败
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
   return (
-    <div className="content">
-      <div className="title">后台管理系统</div>
-      <Go url="/dashboard"></Go>
+    <div>
       <Form
         form={form}
+        className={style['login-form']}
         name="loginForm"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
@@ -55,18 +65,18 @@ export default function Login() {
         <Form.Item
           label="密码"
           name="password"
-          rules={[{ required: true, message: '请填写密码！' }]}
+          rules={[{ required: true, message: '请填写正确密码！', min: 6 }]}
         >
           <Input.Password />
         </Form.Item>
 
         <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
-          <Checkbox>Remember me</Checkbox>
+          <Checkbox>记住密码</Checkbox>
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit">
-            Submit
+            登 录
           </Button>
         </Form.Item>
       </Form>
