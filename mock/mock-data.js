@@ -4,8 +4,8 @@
  */
 module.exports = {
   '/mock': {
-    error_code: 0,
-    error_msg: "SUCCESS",
+    code: 0,
+    message: "SUCCESS",
     data: {
       hello: "world"
     }
