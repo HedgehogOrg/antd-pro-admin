@@ -1,13 +1,14 @@
 /// <reference path="../index.d.ts" />
 
 import React, { Component, lazy, Suspense } from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { observer } from 'mobx-react'
 import { Spin } from 'antd';
 
 import App from '../App';
+import AuthRequire from '../components/AuthRequire';
 import PageLayout from '../components/PageLayout';
-import userInfo from '../stores/user';
+
 const Login = lazy(() => import('../pages/login/Login'));
 const Page404 = lazy(() => import('../pages/page404/Page404'));
 const Dashboard = lazy(() => import('../pages/dashboard/Dashboard'));
@@ -38,7 +39,7 @@ class Router extends Component<Props, State> {
               {/* fullscreen page */}
               <Route path='login' element={<Login />}></Route>
               {/* page with PageLayout */}
-              <Route element={userInfo.loginStatus > 0 ? <PageLayout /> : <Navigate to="/login"></Navigate>}>
+              <Route element={<AuthRequire><PageLayout /></AuthRequire>}>
                 <Route index element={<Dashboard />}></Route>
                 <Route path="dashboard" element={<Dashboard />}></Route>
                 <Route path="*" element={<Page404 />}></Route>
