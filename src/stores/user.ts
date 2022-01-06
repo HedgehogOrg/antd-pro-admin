@@ -1,26 +1,33 @@
-/// <reference path="./user.d.ts" />
-
 import { observable, computed, action , makeObservable} from 'mobx'
 
-const login = JSON.parse(localStorage.getItem('DOCTOR_LOGIN_STATUS') || 'false')
+const loginStatus = JSON.parse(localStorage.getItem('DOCTOR_LOGIN_STATUS') || '0')
 const user = JSON.parse(localStorage.getItem('DOCTOR_USER_INFO') || '{}')
 
-class UserInfo {
+class User {
   constructor() {
     makeObservable(this)
   }
-  @observable login = login
+  @observable loginStatus = loginStatus
   @observable user = user
   @action
-  setLogin (login: boolean) {
-    this.login = login
-    localStorage.setItem('DOCTOR_LOGIN_STATUS', String(this.login))
+  login () {
+    this.loginStatus = 1
+    localStorage.setItem('DOCTOR_LOGIN_STATUS', String(this.loginStatus))
   }
   @action
-  setUserInfo (user: object) {
+  logout () {
+    this.loginStatus = 0
+    localStorage.setItem('DOCTOR_LOGIN_STATUS', String(this.loginStatus))
+  }
+  @action
+  setUser (user: object) {
     this.user = user;
     localStorage.setItem('DOCTOR_USER_INFO', JSON.stringify(this.user))
   }
+  @action
+  clearUser() {
+    this.setUser({})
+  }
 }
 
-export default new UserInfo()
+export default new User()
