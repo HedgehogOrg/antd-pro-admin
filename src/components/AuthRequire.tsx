@@ -6,6 +6,6 @@ export default function AuthRequire(props: any) {
 
   return (
     // 只有登录了才可以访问子组件
-    user.loginStatus > 0 ? props.children : <Navigate to="/login" state={{from: location}} replace></Navigate>
+    user.token ? props.children : <Navigate to="/login" state={{from: location}} replace></Navigate>
   )
 }

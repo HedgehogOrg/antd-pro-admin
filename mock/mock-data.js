@@ -3,7 +3,7 @@
  * 删除 API 即不 mock
  */
 module.exports = {
-  '/mock': {
+  '/login': {
     code: 0,
     message: "SUCCESS",
     data: {

@@ -6,10 +6,10 @@ export default function Go (props: any) {
   const navigate = useNavigate();
 
   function clickHome() {
-    if (user.loginStatus > 0) {
+    if (user.token) {
       user.logout()
     } else {
-      user.login();
+      user.login('login');
     }
     navigate(props.url)
   }

@@ -1,7 +1,8 @@
-import { Form, Input, Button, Checkbox } from 'antd';
-import user from '../../stores/user';
+import { Form, Input, Button, Checkbox, message } from 'antd';
+import user from '../../../stores/user';
 import { useLocation, useNavigate } from 'react-router-dom';
 import style from './login.module.css'
+import request from '../../../utils/request';
 
 // hack ts 报类型未知的错
 interface stateType {
@@ -23,15 +24,21 @@ export default function Login() {
   };
 
   const checkLogin = (values: any) => {
-    // TODO post
-    loginSuccess(values)
+    request.post('/login', values).then(res => {
+      loginSuccess(values)
+      message.success("登录成功")
+    }).catch(err => {
+      if (err.code === -1) {
+        console.log(err.message)
+      }
+    })
   }
 
   const loginSuccess = (values: any) => {
-    // 记录登录状态
-    user.login()
-    // 模拟生成一些数据
     delete values.password
+    // 记录登录状态
+    user.login(JSON.stringify(values))
+    // 模拟生成一些数据
     user.setUser(Object.assign({}, values, { role: { type: 1, name: '超级管理员' } }));
     // 跳转
     navigate(from, { replace: true });
@@ -65,7 +72,7 @@ export default function Login() {
         <Form.Item
           label="密码"
           name="password"
-          rules={[{ required: true, message: '请填写正确密码！', min: 6 }]}
+          rules={[{ required: true, message: '请填写正确密码！' }]}
         >
           <Input.Password />
         </Form.Item>
