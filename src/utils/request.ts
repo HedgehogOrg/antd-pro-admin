@@ -21,7 +21,7 @@ request.interceptors.response.use((res) => {
   // 网络请求成功
   if (statusCode === 200) {
     const { code, message: msg, data } = res.data
-    if (code === 0) {
+    if (code === 0 || code === 'undefined') {
       // 网络请求成功，业务数据正常
       return data
     }
