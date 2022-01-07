@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import Go from '../../components/Go';
+import Go from '../../../components/Go';
+import ChartsArea from '../components/ChartsArea';
 
 
 interface Props {
@@ -17,6 +18,7 @@ class Dashboard extends Component<Props, State> {
       <div>
         dashboard
         <Go url="/login"></Go>
+        <ChartsArea></ChartsArea>
       </div>
     )
   }

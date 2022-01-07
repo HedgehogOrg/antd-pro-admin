@@ -9,9 +9,9 @@ import App from '../App';
 import AuthRequire from '../components/AuthRequire';
 import PageLayout from '../components/PageLayout';
 
-const Login = lazy(() => import('../pages/login/Login'));
-const Page404 = lazy(() => import('../pages/page404/Page404'));
-const Dashboard = lazy(() => import('../pages/dashboard/Dashboard'));
+const Login = lazy(() => import('../modules/login/pages/Login'));
+const Page404 = lazy(() => import('../modules/error-page/pages/Page404'));
+const Dashboard = lazy(() => import('../modules/dashboard/pages/Dashboard'));
 
 interface Props {
 
