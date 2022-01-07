@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import Go from '../../components/Go';
+import Go from '../../../components/Go';
 
 
 export default function Page404(): ReactElement {
