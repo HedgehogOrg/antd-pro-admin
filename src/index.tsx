@@ -2,7 +2,6 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'antd/dist/antd.min.css'
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import Router from './routes/Index';

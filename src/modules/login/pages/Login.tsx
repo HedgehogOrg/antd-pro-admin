@@ -1,7 +1,7 @@
 import { Form, Input, Button, Checkbox, message } from 'antd';
 import user from '../../../stores/user';
 import { useLocation, useNavigate } from 'react-router-dom';
-import style from './login.module.css'
+import style from './login.module.less'
 import request from '../../../utils/request';
 
 // hack ts 报类型未知的错
