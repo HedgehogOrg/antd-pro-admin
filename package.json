@@ -5,6 +5,7 @@
   "main": "index.tsx",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@ant-design/pro-layout": "^6.32.3",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
