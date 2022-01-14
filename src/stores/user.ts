@@ -10,12 +10,16 @@ interface LoginType {
   remember: boolean
 }
 
+interface UserType {
+  username?: string
+}
+
 class User {
   constructor() {
     makeAutoObservable(this)
   }
   token = token
-  user = user
+  user: UserType = user
   setToken (token: string) {
     this.token = token
     localStorage.setItem('ADMIN_TOKEN', String(this.token))
@@ -50,6 +54,7 @@ class User {
   logout () {
     this.clearToken()
     this.clearUser()
+    return Promise.resolve()
   }
 }
 

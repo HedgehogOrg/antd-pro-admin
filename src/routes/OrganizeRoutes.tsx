@@ -2,7 +2,7 @@ import { Route } from 'react-router-dom';
 import { MenuDataItem } from '@ant-design/pro-layout';
 import { Route as RouteType } from '@ant-design/pro-layout/lib/typings';
 
-// 路由
+// 路由模块
 import DashboardRoute from './modules/dashboard';
 import RoleRoute from './modules/role';
 import UserRoute from './modules/user';

@@ -18,7 +18,6 @@ export default function Login() {
 
   // 本地校验成功
   const onFinish = (values: any) => {
-    console.log('Success:', values);
     checkLogin(values)
   };
 

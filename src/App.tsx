@@ -12,11 +12,7 @@ class App extends Component<Props, State> {
   state = {};
 
   render() {
-    return (
-      <div>
-        {<Outlet />}
-      </div>
-    );
+    return <Outlet />;
   }
 }
 

@@ -9,11 +9,11 @@ import App from '../App';
 import AuthRequire from '../components/AuthRequire';
 import PageLayout from '../components/PageLayout';
 
-// 路由
+// 普通路由
 import OrganizeRoutes from './OrganizeRoutes';
 
-// 页面
-const Login = lazy(() => import('../modules/login/pages/Login'));
+// 特殊页面
+import Login from '../modules/login/pages/Login';
 const Page404 = lazy(() => import('../modules/error-page/pages/Page404'));
 
 /* 用于 微前端 qiankun */
