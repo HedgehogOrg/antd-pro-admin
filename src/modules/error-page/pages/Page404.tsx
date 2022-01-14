@@ -14,7 +14,6 @@ export default function Page404(): ReactElement {
         subTitle="对不起，您浏览的网页不存在。"
         extra={<Button type="primary" onClick={() => navigate('/')}>返回主页</Button>}
       />
-      <Button type="primary" onClick={() => navigate('/dashboard')}>dashboard</Button>
     </div>
   )
 }
