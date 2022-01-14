@@ -18,7 +18,9 @@ const UserRoute = {
       hideInMenu: true
     }, {
       path: 'user-new',
+      name: '新增用户',
       component: <UserNew />,
+      hideInMenu: true
     }]
   },{
     path: 'user-setting',

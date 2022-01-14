@@ -14,6 +14,25 @@ export const allRoutes: MenuDataItem[] = [
   RoleRoute,
 ]
 
+interface BreadType {
+  [key: string]: string
+}
+// 根据路由生成面包屑对象
+export const breadcrumbObj: BreadType = {}
+const preprocessRoutes = (routes: RouteType[], name: string = '', path: string = '') => {
+  routes.forEach(route => {
+    let bread = name && route.name ? `${name}/${route.name}` : (name || route.name || '')
+    let key = `${(path && path !== '/') ? `${path}/` : ''}${route.path || ''}`
+    if (route.routes?.length) {
+      preprocessRoutes(route.routes, bread, key)
+    }
+    if (key && bread) {
+      breadcrumbObj[key] = bread
+    }
+  })
+}
+preprocessRoutes(allRoutes)
+
 // 根据路由对象生成 Route Element
 const getRoutes = (routes: RouteType[], parent?:string): any => {
   return (
