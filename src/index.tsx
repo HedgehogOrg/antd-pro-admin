@@ -5,11 +5,19 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import Router from './routes/Index';
+import { BrowserRouter } from 'react-router-dom';
 
+/* 用于 微前端 qiankun */
+let basename:any = undefined
+if (window.__POWERED_BY_QIANKUN__) {
+  basename = '/sd-department-admin-2'
+}
 
 const render = (props?: any) => {
   ReactDOM.render(
-    <Router></Router>, props.container ? props.container.querySelector('#root') : document.getElementById('root')
+    <BrowserRouter basename={basename}>
+      <Router></Router>
+    </BrowserRouter>, props.container ? props.container.querySelector('#root') : document.getElementById('root')
   );
 }
 
