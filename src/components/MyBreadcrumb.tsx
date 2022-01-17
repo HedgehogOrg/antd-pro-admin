@@ -13,7 +13,7 @@ const MyBreadcrumb = (props: Props) => {
     const path = props.pathname.slice(1)
     let bread: string[] = []
     Object.entries(MyRouter.breadcrumbObj).forEach(([key, value]) => {
-      const regStr = '^' + key.replace(/\/:\w+[^/]/g, '\/\\\w*[^\\\/]') + '$'
+      const regStr = '^' + key.replace(/\/:\w+[^/]/g, '/\\w*[^/]') + '$'
       const reg = new RegExp(regStr)
       if (path.match(reg)) {
         bread = value.split('/')
