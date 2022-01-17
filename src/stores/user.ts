@@ -4,14 +4,23 @@ import request from '../utils/request';
 const token = localStorage.getItem('ADMIN_TOKEN') || ''
 const user = JSON.parse(localStorage.getItem('ADMIN_USER_INFO') || '{}')
 
+// 登录的数据结构
 interface LoginType {
   username: string,
   password: string,
   remember: boolean
 }
 
+// 权限的数据结构
+export interface PermissionType {
+  menu: string,
+  children?: PermissionType[]
+}
+
+// 用户的数据结构
 interface UserType {
   username?: string
+  permission?: PermissionType[]
 }
 
 class User {
@@ -20,6 +29,9 @@ class User {
   }
   token = token
   user: UserType = user
+  get permission() {
+    return this.user.permission || []
+  }
   setToken (token: string) {
     this.token = token
     localStorage.setItem('ADMIN_TOKEN', String(this.token))
@@ -37,13 +49,12 @@ class User {
   }
   // 登录
   login (values: LoginType) {
-    return request.post('/login', values).then(res => {
-      const data = { username: values.username, password: values.password }
+    return request.post('/login', values).then(data => {
       // 记录登录状态
       this.setToken(JSON.stringify(data))
       // 模拟生成一些数据
-      this.setUser(Object.assign({}, data, { role: { type: 1, name: '超级管理员' } }));
-      return res
+      this.setUser(Object.assign({}, data, { role: { type: 1, name: '超级管理员' } }))
+      return data
     }).catch(err => {
       if (err.code === -1) {
         console.warn(err.message)
