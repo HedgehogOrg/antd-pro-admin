@@ -13,6 +13,7 @@ const MyBreadcrumb = (props: Props) => {
     const path = props.pathname.slice(1)
     let bread: string[] = []
     Object.entries(MyRouter.breadcrumbObj).forEach(([key, value]) => {
+      // 匹配 /:id 的情况
       const regStr = '^' + key.replace(/\/:\w+[^/]/g, '/\\w*[^/]') + '$'
       const reg = new RegExp(regStr)
       if (path.match(reg)) {
