@@ -1,7 +1,6 @@
 import { Breadcrumb } from 'antd'
 import { MenuDataItem } from '@ant-design/pro-layout';
-import { breadcrumbObj } from '../routes/OrganizeRoutes';
-
+import MyRouter from '../routes/MyRouter';
 
 interface Props {
   routes: MenuDataItem[],
@@ -13,7 +12,7 @@ const MyBreadcrumb = (props: Props) => {
   const getTextFromBreadcrumbObj = () => {
     const path = props.pathname.slice(1)
     let bread: string[] = []
-    Object.entries(breadcrumbObj).forEach(([key, value]) => {
+    Object.entries(MyRouter.breadcrumbObj).forEach(([key, value]) => {
       const regStr = '^' + key.replace(/\/:\w+[^/]/g, '\/\\\w*[^\\\/]') + '$'
       const reg = new RegExp(regStr)
       if (path.match(reg)) {

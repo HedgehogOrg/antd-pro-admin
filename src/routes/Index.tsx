@@ -1,8 +1,7 @@
-/// <reference path="../index.d.ts" />
-
-import React, { Component, lazy } from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import React, { lazy } from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { observer } from 'mobx-react'
+import user from '../stores/user';
 
 // Layout
 import App from '../App';
@@ -10,40 +9,33 @@ import AuthRequire from '../components/AuthRequire';
 import PageLayout from '../components/PageLayout';
 
 // 普通路由
-import OrganizeRoutes from './OrganizeRoutes';
+import MyRouter from './MyRouter';
 
 // 特殊页面
 import Login from '../modules/login/pages/Login';
 import DashboardRoute from './modules/dashboard';
 const Page404 = lazy(() => import('../modules/error-page/pages/Page404'));
 
-/* 用于 微前端 qiankun */
-let basename:any = undefined
-if (window.__POWERED_BY_QIANKUN__) {
-  basename = '/sd-department-admin-2'
-}
+const Router = () => {
 
-@observer
-class Router extends Component {
-
-  render() {
-    return (
-      <BrowserRouter basename={basename}>
-        <Routes>
-          <Route path="/" element={<App />}>
-            {/* fullscreen page */}
-            <Route path='login' element={<Login />}></Route>
-            {/* page with PageLayout */}
-            <Route element={<AuthRequire><PageLayout /></AuthRequire>}>
-              <Route index element={<Navigate to={DashboardRoute.path} />}></Route>
-              { OrganizeRoutes }
-              <Route path="*" element={<Page404 />}></Route>
-            </Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    )
+  if (user.token) {
+    MyRouter.init()
   }
+
+  return (
+    <Routes>
+      <Route path="/" element={<App />}>
+        {/* fullscreen page */}
+        <Route path='login' element={<Login />}></Route>
+        {/* page with PageLayout */}
+        <Route element={<AuthRequire><PageLayout /></AuthRequire>}>
+          <Route index element={<Navigate to={DashboardRoute.path} />}></Route>
+          { MyRouter.routesElements }
+          <Route path="*" element={<Page404 />}></Route>
+        </Route>
+      </Route>
+    </Routes>
+  )
 }
 
-export default Router
+export default observer(Router)

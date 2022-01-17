@@ -2,7 +2,7 @@ import React, { useState, Suspense } from 'react';
 import type { ProSettings } from '@ant-design/pro-layout';
 import ProLayout, { SettingDrawer, PageLoading } from '@ant-design/pro-layout';
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { allRoutes } from '../routes/OrganizeRoutes';
+import MyRouter from '../routes/MyRouter';
 import TopBarLogout from './TopBarLogout';
 import MyBreadcrumb from './MyBreadcrumb';
 
@@ -17,7 +17,7 @@ const PageLayout =() => {
     >
       <ProLayout
         route={{
-          routes: allRoutes
+          routes: MyRouter.permissionRoutes
         }}
         location={{
           pathname: location.pathname,
@@ -30,7 +30,7 @@ const PageLayout =() => {
             <TopBarLogout />
           </div>
         )}
-        headerContentRender={() => <MyBreadcrumb routes={allRoutes} pathname={location.pathname} />}
+        headerContentRender={() => <MyBreadcrumb routes={MyRouter.permissionRoutes} pathname={location.pathname} />}
         {...settings}
       >
         <Suspense fallback={<PageLoading />}>
