@@ -26,6 +26,8 @@ module.exports = {
           }, {
             menu: 'user-new'
           }]
+        }, {
+          menu: 'user-setting'
         }]
       }, {
         menu: 'role',
