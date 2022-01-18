@@ -22,7 +22,9 @@ const TopBarLogout = (props: Props) => {
 
   return (
     <Dropdown overlay={menu} placement="bottomRight" arrow>
-      <Avatar shape="square" size="small" icon={<UserOutlined />} />
+      <div>
+        <Avatar shape="square" size="small" icon={<UserOutlined />} />
+      </div>
     </Dropdown>
   )
 }
