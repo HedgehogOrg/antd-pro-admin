@@ -12,7 +12,7 @@ const PageLayout =() => {
 
   return (
     <div
-      id="test-pro-layout"
+      id="pro-layout"
       style={{ height: '100vh' }}
     >
       <ProLayout
@@ -22,14 +22,8 @@ const PageLayout =() => {
         location={{
           pathname: location.pathname,
         }}
-        menuItemRender={(item, dom) => (
-          <Link to={item.path || ''}>{dom}</Link>
-        )}
-        rightContentRender={() => (
-          <div>
-            <TopBarLogout />
-          </div>
-        )}
+        menuItemRender={(item, dom) => <Link to={item.path || ''}>{dom}</Link>}
+        rightContentRender={() => <TopBarLogout />}
         headerContentRender={() => <MyBreadcrumb routes={MyRouter.permissionRoutes} pathname={location.pathname} />}
         {...settings}
       >
@@ -39,9 +33,12 @@ const PageLayout =() => {
       </ProLayout>
       <SettingDrawer
         enableDarkTheme
-        getContainer={() => document.getElementById('test-pro-layout')}
+        getContainer={() => document.getElementById('pro-layout')}
         settings={settings}
         onSettingChange={(changeSetting) => {
+          /**
+           * 修改primaryColor无效是因为引入了babel-plugin-import，采用了按需加载，两者取其一
+           */
           setSetting(changeSetting);
         }}
         disableUrlParams
