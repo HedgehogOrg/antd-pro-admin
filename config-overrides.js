@@ -1,7 +1,7 @@
 const { override, fixBabelImports, addWebpackPlugin } = require('customize-cra')
 const addLessLoader = require('./plugins/addLessLoader_forCRA5')
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
-const mockMiddleware = require('./mock/mock-middleware')
+const mockMiddleware = require('./plugins/mock-middleware')
 
 const port = process.env.PORT
 
@@ -34,6 +34,7 @@ module.exports = {
       return function(proxy, allowedHost) {
         const config = configFunction(proxy, allowedHost);
         config.headers = {
+          /* 用于 微前端 qiankun 开发*/
           'Access-Control-Allow-Origin': '*'
         }
         config.setupMiddlewares = (middlewares, devServer) => {
