@@ -1,8 +1,8 @@
 // 项目内业务相关的配置
 
-const config = {
+const Config = {
   // API请求的baseUrl
-  baseUrl: '/'
+  BASE_URL: '/'
 }
 
-export default config
+export default Config
