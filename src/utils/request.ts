@@ -19,7 +19,7 @@ request.interceptors.request.use((req) => {
 request.interceptors.response.use((res) => {
   const { status: statusCode, statusText } = res
   // 网络请求成功
-  if (statusCode === 200) {
+  if (statusCode >= 200 && statusCode <= 299) {
     const { code, message: msg, data } = res.data
     if (code === 0 || code === undefined) {
       // 网络请求成功，业务数据正常
@@ -34,14 +34,10 @@ request.interceptors.response.use((res) => {
         break;
     }
     return Promise.reject(res.data)
-  }
-  // 网络请求出错
-  switch (statusCode) {
-    case 503:
-      message.error('服务器出错')
-      break;
-    default:
-      break;
+  } else if (statusCode >= 400 && statusCode <= 499) {
+    message.error('客户端请求出错')
+  } else if (statusCode >= 500 && statusCode <= 599) {
+    message.error('服务器出错')
   }
   return Promise.reject({ code: statusCode, message: statusText })
 }, error => {
