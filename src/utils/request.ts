@@ -46,7 +46,11 @@ request.interceptors.response.use((res) => {
   return Promise.reject({ code: statusCode, message: statusText })
 }, error => {
   // 网络请求失败
-  message.error(error.message)
+  if (error.message === 'Network Error') {
+    message.error('网络请求失败')
+  } else {
+    message.error(error.message)
+  }
   return Promise.reject(error)
 })
 

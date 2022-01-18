@@ -55,10 +55,6 @@ class User {
       // 模拟生成一些数据
       this.setUser(Object.assign({}, data, { role: { type: 1, name: '超级管理员' } }))
       return data
-    }).catch(err => {
-      if (err.code === -1) {
-        console.warn(err.message)
-      }
     })
   }
   // 退出
