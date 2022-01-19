@@ -1,5 +1,5 @@
 {
-  "name": "sd-department-admin-2",
+  "name": "<%=projectName%>",
   "version": "0.1.0",
   "private": true,
   "main": "index.tsx",

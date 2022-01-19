@@ -1,16 +1,16 @@
 /// <reference path="./index.d.ts" />
 
-import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import Config from './config/config';
 import Router from './routes/Index';
-import { BrowserRouter } from 'react-router-dom';
 
 /* 用于 微前端 qiankun */
 let basename:any = undefined
 if (window.__POWERED_BY_QIANKUN__) {
-  basename = '/sd-department-admin-2'
+  basename = `/${Config.PROJECT_NAME}`
 }
 
 const render = (props?: any) => {

@@ -1,18 +1,18 @@
 const { override, fixBabelImports, addWebpackPlugin } = require('customize-cra')
 const addLessLoader = require('./plugins/addLessLoader_forCRA5')
-const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
+const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
 const mockMiddleware = require('./plugins/mock-middleware')
+const pkg = require('./package.json')
 
-const port = process.env.PORT
+process.env.REACT_APP_PROJECT_NAME = pkg.name
 
 module.exports = {
   webpack: override(
     (config) => {
-      config.output.library = 'sd-department-admin-2';
+      config.output.library = pkg.name;
       config.output.libraryTarget = 'umd';
       /* 用于 微前端 qiankun */
-      // TODO: 上线前需修改
-      config.output.publicPath = `http://localhost:${port}/`
+      config.output.publicPath = process.env.REACT_APP_PUBLIC_PATH
       return config;
     },
     fixBabelImports("import", {
