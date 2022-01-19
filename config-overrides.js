@@ -35,7 +35,10 @@ module.exports = {
         const config = configFunction(proxy, allowedHost);
         config.headers = {
           /* 用于 微前端 qiankun 开发*/
-          'Access-Control-Allow-Origin': '*'
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': 'true',
+          'Access-Control-Allow-Method': 'GET, HEAD, OPTIONS, POST, PUT',
+          'Access-Control-Allow-Headers': '*'
         }
         config.setupMiddlewares = (middlewares, devServer) => {
           /* mock */
