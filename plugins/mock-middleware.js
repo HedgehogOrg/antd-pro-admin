@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 
 module.exports = (req, res) => {
-  const mockFile = path.join(__dirname, 'mock-data.js')
+  const mockFile = path.join(__dirname, '../mock/mock-data.js')
   if (fs.existsSync(mockFile)) {
     // eslint-disable-next-line no-eval
     const mock = eval(
