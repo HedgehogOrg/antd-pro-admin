@@ -3,6 +3,7 @@ import request from '../utils/request';
 
 const token = localStorage.getItem('ADMIN_TOKEN') || ''
 const user = JSON.parse(localStorage.getItem('ADMIN_USER_INFO') || '{}')
+const language = localStorage.getItem('ADMIN_LANGUAGE') || 'zh-CN'
 
 // 登录的数据结构
 interface LoginType {
@@ -29,6 +30,7 @@ class User {
   }
   token = token
   user: UserType = user
+  language = language
   get permission() {
     return this.user.permission || []
   }
@@ -46,6 +48,10 @@ class User {
   }
   clearUser() {
     localStorage.removeItem('ADMIN_USER_INFO')
+  }
+  setLanguage (language: string) {
+    this.language = language
+    localStorage.setItem('ADMIN_LANGUAGE', String(this.language))
   }
   // 登录
   login (values: LoginType) {
