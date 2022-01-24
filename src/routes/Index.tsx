@@ -1,7 +1,11 @@
-import React, { lazy } from 'react'
+import React, { lazy, useEffect, useState } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { observer } from 'mobx-react'
+import intl from 'react-intl-universal';
+import { ConfigProvider } from 'antd';
+
 import user from '../stores/user';
+import { locales, antdLocales } from '../locales/index';
 
 // Layout
 import App from '../App';
@@ -18,23 +22,50 @@ const Page404 = lazy(() => import('../modules/error-page/pages/Page404'));
 
 const Router = () => {
 
+  /**
+   * 初始化路由
+   */
   if (user.token) {
     MyRouter.init()
   }
 
+  /**
+   * 初始化语言包
+   */
+  const [initIntlDone, setInitIntlDone] = useState(false);
+  useEffect(() => {
+    // 根据选择的语言更新语言包
+    locales[user.language].then((data: any) => {
+      setInitIntlDone(false)
+      intl.init({
+        currentLocale: user.language,
+        locales: { [user.language]: data.default }
+      }).then(() => {
+        setInitIntlDone(true)
+      })
+    });
+  }, [user.language]);
+
   return (
-    <Routes>
-      <Route path="/" element={<App />}>
-        {/* fullscreen page */}
-        <Route path='login' element={<Login />}></Route>
-        {/* page with PageLayout */}
-        <Route element={<AuthRequire><PageLayout /></AuthRequire>}>
-          <Route index element={<Navigate to={DashboardRoute.path} />}></Route>
-          { MyRouter.routesElements }
-          <Route path="*" element={<Page404 />}></Route>
-        </Route>
-      </Route>
-    </Routes>
+    <>
+    {
+      initIntlDone &&
+      <ConfigProvider locale={antdLocales[user.language]}>
+        <Routes>
+          <Route path="/" element={<App />}>
+            {/* fullscreen page */}
+            <Route path='login' element={<Login />}></Route>
+            {/* page with PageLayout */}
+            <Route element={<AuthRequire><PageLayout /></AuthRequire>}>
+              <Route index element={<Navigate to={DashboardRoute.path} />}></Route>
+              { MyRouter.routesElements }
+              <Route path="*" element={<Page404 />}></Route>
+            </Route>
+          </Route>
+        </Routes>
+      </ConfigProvider>
+    }
+    </>
   )
 }
 
