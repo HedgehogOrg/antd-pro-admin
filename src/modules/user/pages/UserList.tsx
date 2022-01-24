@@ -1,6 +1,8 @@
 import React from 'react'
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import intl from 'react-intl-universal';
+import user from '../../../stores/user';
 
 interface Props {
 
@@ -12,11 +14,14 @@ const UserList = (props: Props) => {
   return (
     <div>
       userlist
-      <Button onClick={() => navigate('user-detail/1')}>详情1</Button>
-      <Button onClick={() => navigate('user-detail/2')}>详情2</Button>
-      <Button onClick={() => navigate('user-detail/3')}>详情3</Button>
-      <Button onClick={() => navigate('user-detail/4')}>详情4</Button>
-      <Button onClick={() => navigate('user-new')}>新建用户</Button>
+      <br />
+      {user.language}
+      <br />
+      <Button onClick={() => navigate('user-detail/1')}>{intl.get('user.DETAIL', { id: 1 })}</Button>
+      <Button onClick={() => navigate('user-detail/2')}>{intl.get('user.DETAIL', { id: 2 })}</Button>
+      <Button onClick={() => navigate('user-detail/3')}>{intl.get('user.DETAIL', { id: 3 })}</Button>
+      <Button onClick={() => navigate('user-detail/4')}>{intl.get('user.DETAIL', { id: 4 })}</Button>
+      <Button onClick={() => navigate('user-new')}>{intl.get('user.NEW_USER')}</Button>
     </div>
   )
 }
