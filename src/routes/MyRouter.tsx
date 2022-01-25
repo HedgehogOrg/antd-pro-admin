@@ -1,6 +1,7 @@
 import { Route } from 'react-router-dom';
 import { MenuDataItem } from '@ant-design/pro-layout';
 import { Route as RouteType } from '@ant-design/pro-layout/lib/typings';
+import intl from 'react-intl-universal';
 import user, { PermissionType } from '../stores/user';
 
 // 路由模块
@@ -34,13 +35,21 @@ const MyRouter = class {
     this.routesElements = this.getRoutes(this.permissionRoutes)
   }
 
+  // 处理多语言翻译
+  setIntlMenuName(route: MenuDataItem) {
+    return {
+      ...route,
+      name: route.name?.startsWith('menu.') ? intl.get(route.name || '') : route.name
+    }
+  }
+
   // 根据permission筛选路由
   filterRoutes (routes: MenuDataItem[] = [], permissions: PermissionType[]) {
     const afterFilterRoutes: MenuDataItem[] = []
     permissions?.forEach((permission: any) => {
       routes.forEach((route) => {
         if (route.permission === permission.menu) {
-          const tmpRoute = { ...route }
+          const tmpRoute = { ...this.setIntlMenuName(route) }
           const tmpRoutes = route.routes
           if (permission.children?.length && tmpRoutes?.length) {
             tmpRoute.routes = [...this.filterRoutes(tmpRoutes, permission.children)]
