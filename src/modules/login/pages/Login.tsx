@@ -1,20 +1,25 @@
 import { Form, Input, Button, Checkbox, message } from 'antd';
-import user from '../../../stores/user';
 import { useLocation, useNavigate } from 'react-router-dom';
+import user from '../../../stores/user';
 import style from './login.module.less'
+import { setIntlModule } from '../../../utils/utils';
 
-// hack ts 报类型未知的错
 interface stateType {
   from: { pathname: string }
 }
 
 export default function Login() {
+  // form
   const [form] = Form.useForm()
 
+  // location
   const navigate = useNavigate();
   const location = useLocation();
   const state = location.state as stateType;
   const from = state?.from?.pathname || '/' ;
+
+  // 多语言
+  const t = setIntlModule('login')
 
   // 本地校验成功
   const onFinish = (values: any) => {
@@ -23,7 +28,7 @@ export default function Login() {
 
   const checkLogin = (values: any) => {
     user.login(values).then(() => {
-      message.success("登录成功")
+      message.success(t('LOGIN_SUCCESS'))
       // 跳转
       navigate(from, { replace: true });
     })
@@ -47,28 +52,28 @@ export default function Login() {
         autoComplete="off"
       >
         <Form.Item
-          label="用户名"
+          label={t('USERNAME')}
           name="username"
-          rules={[{ required: true, message: '请填写用户名！' }]}
+          rules={[{ required: true, message: t('RULE_NAME') }]}
         >
           <Input />
         </Form.Item>
 
         <Form.Item
-          label="密码"
+          label={t('PASSWORD')}
           name="password"
-          rules={[{ required: true, message: '请填写正确密码！' }]}
+          rules={[{ required: true, message: t('RULE_PWD') }]}
         >
           <Input.Password />
         </Form.Item>
 
         <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
-          <Checkbox>记住密码</Checkbox>
+          <Checkbox>{t('REMEMBER')}</Checkbox>
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit">
-            登 录
+            {t('LOGIN')}
           </Button>
         </Form.Item>
       </Form>

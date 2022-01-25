@@ -3,6 +3,7 @@ import { UserOutlined } from '@ant-design/icons';
 import user from '../stores/user'
 import { useNavigate } from 'react-router-dom';
 import SelectLanguage from './SelectLanguage';
+import intl from 'react-intl-universal';
 
 interface Props {
 
@@ -17,7 +18,7 @@ const TopBarLogout = (props: Props) => {
   }
   const menu = <Menu>
     <Menu.Item onClick={logout} key={user.user.username}>
-      {user.user.username} 退出
+      {user.user.username} {intl.get('login.LOGOUT')}
     </Menu.Item>
   </Menu>
 
