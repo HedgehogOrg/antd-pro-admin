@@ -3,7 +3,14 @@ import request from '../utils/request';
 
 const token = localStorage.getItem('ADMIN_TOKEN') || ''
 const user = JSON.parse(localStorage.getItem('ADMIN_USER_INFO') || '{}')
-const language = localStorage.getItem('ADMIN_LANGUAGE') || 'zh-CN'
+const language = getLanguage()
+
+function getLanguage() {
+  const tmpLanguate = localStorage.getItem('ADMIN_LANGUAGE')
+    || (Intl ? Intl.NumberFormat().resolvedOptions().locale : navigator.languages)
+    || 'zh-CN'
+  return tmpLanguate === 'zh-TW' ? 'zh-HK' : tmpLanguate as string
+}
 
 // 登录的数据结构
 interface LoginType {
@@ -28,9 +35,13 @@ class User {
   constructor() {
     makeAutoObservable(this)
   }
+  // 签名
   token = token
+  // 用户数据
   user: UserType = user
+  // 多语言
   language = language
+  // 权限列表
   get permission() {
     return this.user.permission || []
   }
