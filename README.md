@@ -32,6 +32,7 @@
 │   │   └── PageLayout.tsx                // 登录后的页面布局
 │   ├── config                            // 全局业务配置
 │   ├── index.tsx                         // 入口文件
+│   ├── locales                           // 多语言模块
 │   ├── modules                           // 业务模块
 │   │   ├── dashboard                     // 模块名称
 │   │   │   ├── components                // 模块内组件库
