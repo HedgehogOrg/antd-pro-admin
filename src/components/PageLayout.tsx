@@ -1,6 +1,7 @@
-import React, { useState, Suspense } from 'react';
+import { useState, Suspense } from 'react';
 import type { ProSettings } from '@ant-design/pro-layout';
-import ProLayout, { SettingDrawer, PageLoading } from '@ant-design/pro-layout';
+import ProLayout, { SettingDrawer } from '@ant-design/pro-layout';
+import ProSkeleton from '@ant-design/pro-skeleton';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import MyRouter from '../routes/MyRouter';
 import TopBarLogout from './TopBarLogout';
@@ -27,7 +28,7 @@ const PageLayout =() => {
         headerContentRender={() => <MyBreadcrumb routes={MyRouter.permissionRoutes} pathname={location.pathname} />}
         {...settings}
       >
-        <Suspense fallback={<PageLoading />}>
+        <Suspense fallback={<ProSkeleton type="descriptions" />}>
           <Outlet></Outlet>
         </Suspense>
       </ProLayout>
