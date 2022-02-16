@@ -1,4 +1,5 @@
 import { lazy } from 'react';
+import { TeamOutlined } from '@ant-design/icons';
 
 const UserList = lazy(() => import('../../modules/user/pages/UserList'))
 const UserSetting = lazy(() => import('../../modules/user/pages/UserSetting'))
@@ -7,6 +8,7 @@ const UserNew = lazy(() => import('../../modules/user/pages/UserNew'))
 
 const UserRoute = {
   name: 'menu.USER',
+  icon: <TeamOutlined />,
   permission: 'user',
   routes: [{
     path: 'user-list',
