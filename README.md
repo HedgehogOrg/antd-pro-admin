@@ -52,7 +52,8 @@
 
 ## 运行脚本
 
-开发\
+开发
+
  [http://localhost:8888](http://localhost:8888)
 
 
@@ -66,4 +67,14 @@
  打包项目到 `build` 文件夹
 
     npm run build
+
+ 使用`env-cmd`可以指定环境变量运行脚本
+
+ 如：使用生成环境的环境变量来开发
+
+   ```
+   // "start:prod": "env-cmd -f .env.production react-app-rewired start"
+
+   npm run start:prod
+   ```
 
