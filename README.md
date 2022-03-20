@@ -43,7 +43,7 @@
 │   │   ├── error-page                    // 错误页文件夹
 │   │   └── login                         // 登录模块
 │   ├── routes
-│   │   ├── Index.tsx                     // 路由入口
+│   │   ├── index.tsx                     // 路由入口
 │   │   ├── MyRouter.tsx                  // 处理路由对象
 │   │   └── modules                       // 路由模块
 │   ├── stores                            // Mobx数据储存模块

@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import Config from './config/config';
-import Router from './routes/Index';
+import Router from './routes/index';
 
 /* 用于 微前端 qiankun */
 let basename:any = undefined
