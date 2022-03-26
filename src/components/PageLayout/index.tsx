@@ -3,9 +3,9 @@ import type { ProSettings } from '@ant-design/pro-layout';
 import ProLayout, { SettingDrawer } from '@ant-design/pro-layout';
 import ProSkeleton from '@ant-design/pro-skeleton';
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import MyRouter from '../routes/MyRouter';
-import TopBarLogout from './TopBarLogout';
-import MyBreadcrumb from './MyBreadcrumb';
+import MyRouter from '../../routes/MyRouter';
+import TopBarLogout from '../TopBarLogout';
+import MyBreadcrumb from '../MyBreadcrumb';
 
 const PageLayout =() => {
   const [settings, setSetting] = useState<Partial<ProSettings> | undefined>({ fixSiderbar: true });

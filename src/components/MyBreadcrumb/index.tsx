@@ -1,6 +1,6 @@
 import { Breadcrumb } from 'antd'
 import { MenuDataItem } from '@ant-design/pro-layout';
-import MyRouter from '../routes/MyRouter';
+import MyRouter from '../../routes/MyRouter';
 
 interface Props {
   routes: MenuDataItem[],
