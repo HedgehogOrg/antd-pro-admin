@@ -20,20 +20,7 @@ request.interceptors.response.use((res) => {
   const { status: statusCode, statusText } = res
   // 网络请求成功
   if (statusCode >= 200 && statusCode <= 299) {
-    const { code, message: msg, data } = res.data
-    if (code === 0 || code === undefined) {
-      // 网络请求成功，业务数据正常
-      return data
-    }
-    // 网络请求成功，但是业务操作失败
-    switch (code) {
-      case -1:
-        message.error(msg)
-        break;
-      default:
-        break;
-    }
-    return Promise.reject(res.data)
+    return res.data
   } else if (statusCode >= 400 && statusCode <= 499) {
     message.error('客户端请求出错')
   } else if (statusCode >= 500 && statusCode <= 599) {
