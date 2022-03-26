@@ -1,6 +1,6 @@
 const { override, fixBabelImports, addWebpackPlugin } = require('customize-cra')
-const addLessLoader = require('./plugins/addLessLoader_forCRA5')
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
+const addLessLoader = require('./plugins/addLessLoader_forCRA5')
 const mockMiddleware = require('./plugins/mock-middleware')
 const pkg = require('./package.json')
 
