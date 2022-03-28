@@ -48,7 +48,7 @@ class User {
   }
   // 登录
   login (values: LoginType) {
-    return request.post('/login', values).then(data => {
+    return request.post('/login-test', values).then(data => {
       // 记录登录状态
       this.setToken(JSON.stringify(data))
       // 模拟生成一些数据
