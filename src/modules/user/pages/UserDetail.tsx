@@ -3,11 +3,8 @@ import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { setIntlModule } from '../../../utils/utils';
 
-interface Props {
 
-}
-
-const UserDetail = (props: Props) => {
+const UserDetail = () => {
   const navigate = useNavigate()
 
   const t = setIntlModule('user')

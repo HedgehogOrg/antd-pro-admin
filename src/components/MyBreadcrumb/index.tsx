@@ -1,14 +1,9 @@
 import { Breadcrumb } from 'antd'
-import { MenuDataItem } from '@ant-design/pro-layout';
 import MyRouter from '../../routes/MyRouter';
-
-interface Props {
-  routes: MenuDataItem[],
-  pathname: string
-}
+import { MyBreadcrumbType } from '../../types/routes';
 
 // 匹配面包屑
-const MyBreadcrumb = (props: Props) => {
+const MyBreadcrumb = (props: MyBreadcrumbType) => {
   const getTextFromBreadcrumbObj = () => {
     const path = props.pathname.slice(1)
     let bread: string[] = []

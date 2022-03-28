@@ -1,10 +1,6 @@
 import React from 'react'
 
-interface Props {
-
-}
-
-const Role = (props: Props) => {
+const Role = () => {
   return (
     <div>
       role

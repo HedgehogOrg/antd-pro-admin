@@ -1,4 +1,4 @@
-/// <reference path="./index.d.ts" />
+/// <reference path="./types/index.d.ts" />
 
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';

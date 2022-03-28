@@ -1,23 +1,8 @@
 import { makeAutoObservable, runInAction } from 'mobx';
-import { Locale } from 'antd/lib/locale-provider';
+import { LanguageType, LocalesType } from '../types/language';
 
 import zhCN from 'antd/lib/locale/zh_CN';
 import zhHK from 'antd/lib/locale/zh_HK';
-
-interface Locales {
-  [key: string]: any
-}
-
-interface LanguageType {
-  // 显示的下拉
-  name: string,
-  // key
-  value: string,
-  // antd语言包（日期、日历等插件）
-  antd: Locale,
-  // 自定义语言包（业务语言）
-  custom: Promise<any>,
-}
 
 const languages: LanguageType[] = [{
   name: '简体',
@@ -51,7 +36,7 @@ class Language {
 
   // 生成对应的包
   getLocale(type: string) {
-    const tmpLocale: Locales = {}
+    const tmpLocale: LocalesType = {}
     this.languages.forEach(item => {
       tmpLocale[item.value] = item[type as keyof LanguageType]
     })

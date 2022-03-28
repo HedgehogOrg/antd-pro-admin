@@ -2,11 +2,8 @@ import React from 'react'
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
-interface Props {
 
-}
-
-const UserNew = (props: Props) => {
+const UserNew = () => {
   const navigate = useNavigate()
 
   return (

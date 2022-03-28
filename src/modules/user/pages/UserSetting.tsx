@@ -1,10 +1,7 @@
 import React from 'react'
 
-interface Props {
 
-}
-
-const UserSetting = (props: Props) => {
+const UserSetting = () => {
   return (
     <div>
       UserSetting

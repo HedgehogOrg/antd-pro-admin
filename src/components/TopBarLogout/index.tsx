@@ -5,11 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import SelectLanguage from '../SelectLanguage';
 import intl from 'react-intl-universal';
 
-interface Props {
-
-}
-
-const TopBarLogout = (props: Props) => {
+const TopBarLogout = () => {
   const navigate = useNavigate()
   const logout = () => {
     user.logout().then(() => {

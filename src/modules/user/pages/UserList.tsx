@@ -5,11 +5,7 @@ import intl from 'react-intl-universal';
 import user from '../../../stores/user';
 import Dayjs from 'dayjs';
 
-interface Props {
-
-}
-
-const UserList = (props: Props) => {
+const UserList = () => {
   const navigate = useNavigate()
 
   return (

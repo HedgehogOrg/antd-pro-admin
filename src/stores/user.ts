@@ -1,4 +1,5 @@
 import { makeAutoObservable } from 'mobx'
+import { LoginType, UserType } from '../types/stores/user'
 import request from '../utils/request';
 
 const token = localStorage.getItem('ADMIN_TOKEN') || ''
@@ -10,25 +11,6 @@ function getLanguage() {
     || (Intl ? Intl.NumberFormat().resolvedOptions().locale : navigator.languages)
     || 'zh-CN'
   return tmpLanguate === 'zh-TW' ? 'zh-HK' : tmpLanguate as string
-}
-
-// 登录的数据结构
-interface LoginType {
-  username: string,
-  password: string,
-  remember: boolean
-}
-
-// 权限的数据结构
-export interface PermissionType {
-  menu: string,
-  children?: PermissionType[]
-}
-
-// 用户的数据结构
-interface UserType {
-  username?: string
-  permission?: PermissionType[]
 }
 
 class User {
