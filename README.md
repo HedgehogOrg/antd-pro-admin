@@ -29,7 +29,8 @@
 ├── src
 │   ├── App.tsx                           // 根组件
 │   ├── components                        // 公用组件库
-│   │   └── PageLayout.tsx                // 登录后的页面布局
+│   │   └── PageLayout
+│   │       └── index.tsx                 // 登录后的页面布局
 │   ├── config                            // 全局业务配置
 │   ├── index.tsx                         // 入口文件
 │   ├── locales                           // 多语言模块
@@ -47,6 +48,8 @@
 │   │   ├── MyRouter.tsx                  // 处理路由对象
 │   │   └── modules                       // 路由模块
 │   ├── stores                            // Mobx数据储存模块
+│   ├── styles                            // 公用样式
+│   ├── types                             // TS类型文件
 │   └── utils                             // 工具库
 ```
 
