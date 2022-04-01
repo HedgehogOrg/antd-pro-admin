@@ -1,6 +1,6 @@
-const ChartsArea = (props: any) => {
+const ChartsArea = () => {
   return (
     <div>ChartsArea</div>
-  )
-}
-export default ChartsArea
+  );
+};
+export default ChartsArea;

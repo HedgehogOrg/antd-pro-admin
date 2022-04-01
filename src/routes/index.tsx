@@ -1,6 +1,6 @@
-import { lazy } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
-import { observer } from 'mobx-react'
+import { lazy } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { observer } from 'mobx-react';
 import intl from 'react-intl-universal';
 import { ConfigProvider } from 'antd';
 
@@ -28,14 +28,14 @@ const Router = () => {
    intl.init({
     currentLocale: user.language,
     locales: { [user.language]: Lang.locales[user.language] },
-    warningHandler() {}
-  })
+    warningHandler() {},
+  });
 
   /**
    * 初始化路由
    */
   if (user.token) {
-    MyRouter.init()
+    MyRouter.init();
   }
 
   return (
@@ -57,7 +57,7 @@ const Router = () => {
       </ConfigProvider>
     }
     </>
-  )
-}
+  );
+};
 
-export default observer(Router)
+export default observer(Router);

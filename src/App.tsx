@@ -3,6 +3,6 @@ import { observer } from "mobx-react";
 
 const App = () => {
   return <Outlet />;
-}
+};
 
 export default observer(App);

@@ -1,5 +1,5 @@
-import login from "./zh-HK/login"
-import menu from "./zh-HK/menu"
+import login from "./zh-HK/login";
+import menu from "./zh-HK/menu";
 import user from './zh-HK/user';
 
 const message = {
@@ -7,7 +7,7 @@ const message = {
   BACK_TO_HOME: '返回主頁',
   login,
   menu,
-  user
-}
+  user,
+};
 
-export default message
+export default message;

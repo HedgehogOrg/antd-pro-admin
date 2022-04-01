@@ -1,11 +1,11 @@
-const { override, fixBabelImports, addWebpackPlugin, addWebpackAlias } = require('customize-cra')
-const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
-const addLessLoader = require('./plugins/addLessLoader_forCRA5')
-const mockMiddleware = require('./plugins/mock-middleware')
-const pkg = require('./package.json')
-const path = require('path')
+const { override, fixBabelImports, addWebpackPlugin, addWebpackAlias } = require('customize-cra');
+const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
+const addLessLoader = require('./plugins/addLessLoader_forCRA5');
+const mockMiddleware = require('./plugins/mock-middleware');
+const pkg = require('./package.json');
+const path = require('path');
 
-process.env.REACT_APP_PROJECT_NAME = pkg.name
+process.env.REACT_APP_PROJECT_NAME = pkg.name;
 
 module.exports = {
   webpack: override(
@@ -13,7 +13,7 @@ module.exports = {
       config.output.library = pkg.name;
       config.output.libraryTarget = 'umd';
       /* 用于 微前端 qiankun */
-      config.output.publicPath = process.env.REACT_APP_PUBLIC_PATH
+      config.output.publicPath = process.env.REACT_APP_PUBLIC_PATH;
       return config;
     },
     fixBabelImports("import", {
@@ -44,14 +44,14 @@ module.exports = {
           'Access-Control-Allow-Credentials': 'true',
           'Access-Control-Allow-Method': 'GET, HEAD, OPTIONS, POST, PUT',
           'Access-Control-Allow-Headers': '*'
-        }
+        };
         config.setupMiddlewares = (middlewares, devServer) => {
           /* mock */
-          middlewares.push(mockMiddleware)
+          middlewares.push(mockMiddleware);
           return middlewares;
-        }
+        };
         return config;
-      }
+      };
     }
   )
-}
+};

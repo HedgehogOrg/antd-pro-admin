@@ -11,7 +11,7 @@ const Dashboard = () => {
       <Link to={'/404'}>404</Link>
       <ChartsArea></ChartsArea>
     </div>
-  )
-}
+  );
+};
 
-export default observer(Dashboard)
+export default observer(Dashboard);

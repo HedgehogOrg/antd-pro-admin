@@ -8,18 +8,18 @@ import Config from './config/config';
 import Router from './routes/index';
 
 /* 用于 微前端 qiankun */
-let basename:any = undefined
+let basename:any = undefined;
 if (window.__POWERED_BY_QIANKUN__) {
-  basename = `/${Config.PROJECT_NAME}`
+  basename = `/${Config.PROJECT_NAME}`;
 }
 
 const render = (props?: any) => {
   ReactDOM.render(
     <BrowserRouter basename={basename}>
       <Router></Router>
-    </BrowserRouter>, props.container ? props.container.querySelector('#root') : document.getElementById('root')
+    </BrowserRouter>, props.container ? props.container.querySelector('#root') : document.getElementById('root'),
   );
-}
+};
 
 /* 非qiankun的独立运行状态下 */
 if (!window.__POWERED_BY_QIANKUN__) {
@@ -38,7 +38,7 @@ if (!window.__POWERED_BY_QIANKUN__) {
  * 应用每次进入都会调用 mount 方法，通常我们在这里触发应用的渲染方法
  */
 export async function mount(props: any) {
-  render(props)
+  render(props);
 }
 
 /**

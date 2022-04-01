@@ -6,7 +6,7 @@ const login = {
   PASSWORD: '密码',
   RULE_NAME: '请填写用户名！',
   RULE_PWD: '请填写正确密码！',
-  REMEMBER: '记住密码'
-}
+  REMEMBER: '记住密码',
+};
 
-export default login
+export default login;

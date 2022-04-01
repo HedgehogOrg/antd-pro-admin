@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 const Role = () => {
   return (
     <div>
       role
     </div>
-  )
-}
+  );
+};
 
-export default Role
+export default Role;

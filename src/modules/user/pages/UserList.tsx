@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Button, DatePicker } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import intl from 'react-intl-universal';
@@ -6,7 +6,7 @@ import user from '@/stores/user';
 import Dayjs from 'dayjs';
 
 const UserList = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -22,7 +22,7 @@ const UserList = () => {
       <DatePicker></DatePicker>
       {intl.get('user.TIME', {time: Dayjs()})}
     </div>
-  )
-}
+  );
+};
 
-export default UserList
+export default UserList;

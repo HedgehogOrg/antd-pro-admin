@@ -8,14 +8,12 @@
     "start:test": "env-cmd -f .env.test react-app-rewired start",
     "start:prod": "env-cmd -f .env.production react-app-rewired start",
     "test": "react-app-rewired test",
-    "build": "react-app-rewired build"
+    "build": "react-app-rewired build",
+    "lint": "eslint --fix --ext .tsx --ext .ts src"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
+  "pre-commit": [
+    "lint"
+  ],
   "browserslist": {
     "production": [
       ">0.2%",

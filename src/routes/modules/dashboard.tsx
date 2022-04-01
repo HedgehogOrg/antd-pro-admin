@@ -8,7 +8,7 @@ const DashboardRoute = {
   icon: <LineChartOutlined />,
   permission: 'dashboard',
   name: 'menu.DASHBOARD',
-  component: <Dashboard />
-}
+  component: <Dashboard />,
+};
 
-export default DashboardRoute
+export default DashboardRoute;

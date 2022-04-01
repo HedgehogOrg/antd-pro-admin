@@ -1,20 +1,19 @@
-import React from 'react'
+import React from 'react';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { setIntlModule } from '@/utils/utils';
 
-
 const UserDetail = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const t = setIntlModule('user')
+  const t = setIntlModule('user');
 
   return (
     <div>
       UserDetail
       <Button onClick={() => navigate(-1)}>{t('BACK')}</Button>
     </div>
-  )
-}
+  );
+};
 
-export default UserDetail
+export default UserDetail;

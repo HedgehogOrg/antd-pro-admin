@@ -9,12 +9,12 @@ import MyBreadcrumb from '../MyBreadcrumb';
 
 const LayoutSettingsDefault = {
   fixSiderbar: true,
-  fixedHeader: true
-}
+  fixedHeader: true,
+};
 
 const PageLayout =() => {
   const [settings, setSetting] = useState<Partial<ProSettings> | undefined>(LayoutSettingsDefault);
-  const location = useLocation()
+  const location = useLocation();
 
   return (
     <div
@@ -23,7 +23,7 @@ const PageLayout =() => {
     >
       <ProLayout
         route={{
-          routes: MyRouter.permissionRoutes
+          routes: MyRouter.permissionRoutes,
         }}
         location={{
           pathname: location.pathname,
@@ -52,4 +52,4 @@ const PageLayout =() => {
     </div>
   );
 };
-export default PageLayout
+export default PageLayout;

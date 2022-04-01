@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 import { IdcardOutlined } from '@ant-design/icons';
 
-const Role = lazy(() => import('../../modules/role/pages/Role'))
+const Role = lazy(() => import('../../modules/role/pages/Role'));
 
 const RoleRoute = {
   name: 'menu.ROLE',
@@ -12,9 +12,7 @@ const RoleRoute = {
     permission: 'role-list',
     name: 'menu.ROLE_LIST',
     component: <Role />,
-  }]
-}
+  }],
+};
 
-
-
-export default RoleRoute
+export default RoleRoute;

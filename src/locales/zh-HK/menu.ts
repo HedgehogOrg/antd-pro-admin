@@ -7,5 +7,5 @@ const menu = {
   USER_DETAIL: '用戶詳情',
   USER_NEW: '新增用戶',
   USER_SETTING: '用戶配置',
-}
-export default menu
+};
+export default menu;
