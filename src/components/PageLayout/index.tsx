@@ -7,8 +7,13 @@ import MyRouter from '../../routes/MyRouter';
 import TopBarLogout from '../TopBarLogout';
 import MyBreadcrumb from '../MyBreadcrumb';
 
+const LayoutSettingsDefault = {
+  fixSiderbar: true,
+  fixedHeader: true
+}
+
 const PageLayout =() => {
-  const [settings, setSetting] = useState<Partial<ProSettings> | undefined>({ fixSiderbar: true });
+  const [settings, setSetting] = useState<Partial<ProSettings> | undefined>(LayoutSettingsDefault);
   const location = useLocation()
 
   return (
