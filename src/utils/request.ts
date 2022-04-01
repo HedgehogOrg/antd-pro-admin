@@ -1,7 +1,7 @@
 import { message } from 'antd';
 import axios from 'axios';
-import Config from '../config/config';
-import user from '../stores/user';
+import Config from '@/config/config';
+import user from '@/stores/user';
 
 // 默认基础配置
 const request = axios.create({

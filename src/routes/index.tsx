@@ -4,21 +4,21 @@ import { observer } from 'mobx-react'
 import intl from 'react-intl-universal';
 import { ConfigProvider } from 'antd';
 
-import user from '../stores/user';
-import Lang from '../locales/index';
+import user from '@/stores/user';
+import Lang from '@/locales/index';
 
 // Layout
 import App from '../App';
-import AuthRequire from '../components/AuthRequire';
-import PageLayout from '../components/PageLayout';
+import AuthRequire from '@/components/AuthRequire';
+import PageLayout from '@/components/PageLayout';
 
 // 普通路由
 import MyRouter from './MyRouter';
 
 // 特殊页面
-import Login from '../modules/login/pages/Login';
+import Login from '@/modules/login/pages/Login';
 import DashboardRoute from './modules/dashboard';
-const Page404 = lazy(() => import('../modules/error-page/pages/Page404'));
+const Page404 = lazy(() => import('@/modules/error-page/pages/Page404'));
 
 const Router = () => {
 

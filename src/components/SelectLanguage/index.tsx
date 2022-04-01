@@ -1,6 +1,6 @@
 import { Dropdown, Menu, Tag } from 'antd';
-import user from '../../stores/user';
-import Lang from '../../locales/index';
+import user from '@/stores/user';
+import Lang from '@/locales/index';
 
 type Props = {};
 

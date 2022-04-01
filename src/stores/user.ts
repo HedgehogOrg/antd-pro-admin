@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx'
-import { LoginType, UserType } from '../types/stores/user'
-import request from '../utils/request';
+import { LoginType, UserType } from '@/types/stores/user'
+import request from '@/utils/request';
 
 const token = localStorage.getItem('ADMIN_TOKEN') || ''
 const user = JSON.parse(localStorage.getItem('ADMIN_USER_INFO') || '{}')

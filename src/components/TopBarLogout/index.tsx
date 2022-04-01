@@ -1,6 +1,6 @@
 import { Dropdown, Menu, Avatar } from 'antd'
 import { UserOutlined } from '@ant-design/icons';
-import user from '../../stores/user'
+import user from '@/stores/user'
 import { useNavigate } from 'react-router-dom';
 import SelectLanguage from '../SelectLanguage';
 import intl from 'react-intl-universal';

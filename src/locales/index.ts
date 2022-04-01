@@ -1,5 +1,5 @@
 import { makeAutoObservable, runInAction } from 'mobx';
-import { LanguageType, LocalesType } from '../types/language';
+import { LanguageType, LocalesType } from '@/types/language';
 
 import zhCN from 'antd/lib/locale/zh_CN';
 import zhHK from 'antd/lib/locale/zh_HK';

@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, DatePicker } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import intl from 'react-intl-universal';
-import user from '../../../stores/user';
+import user from '@/stores/user';
 import Dayjs from 'dayjs';
 
 const UserList = () => {

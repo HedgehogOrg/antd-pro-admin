@@ -2,9 +2,9 @@ import { Route } from 'react-router-dom';
 import { MenuDataItem } from '@ant-design/pro-layout';
 import { Route as RouteType } from '@ant-design/pro-layout/lib/typings';
 import intl from 'react-intl-universal';
-import { PermissionType } from '../types/stores/user';
-import { BreadType } from '../types/routes';
-import user from '../stores/user';
+import { PermissionType } from '@/types/stores/user';
+import { BreadType } from '@/types/routes';
+import user from '@/stores/user';
 
 // 路由模块
 import DashboardRoute from './modules/dashboard';

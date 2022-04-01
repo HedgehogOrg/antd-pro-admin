@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { setIntlModule } from '../../../utils/utils';
+import { setIntlModule } from '@/utils/utils';
 
 
 const UserDetail = () => {

@@ -1,6 +1,6 @@
 import ChartsArea from '../components/ChartsArea';
 import { observer } from 'mobx-react';
-import user from '../../../stores/user';
+import user from '@/stores/user';
 import { Link } from 'react-router-dom';
 
 const Dashboard = () => {

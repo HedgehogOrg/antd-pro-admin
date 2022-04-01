@@ -1,6 +1,6 @@
 import { Breadcrumb } from 'antd'
-import MyRouter from '../../routes/MyRouter';
-import { MyBreadcrumbType } from '../../types/routes';
+import MyRouter from '@/routes/MyRouter';
+import { MyBreadcrumbType } from '@/types/routes';
 
 // 匹配面包屑
 const MyBreadcrumb = (props: MyBreadcrumbType) => {

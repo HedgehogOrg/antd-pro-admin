@@ -1,8 +1,9 @@
-const { override, fixBabelImports, addWebpackPlugin } = require('customize-cra')
+const { override, fixBabelImports, addWebpackPlugin, addWebpackAlias } = require('customize-cra')
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
 const addLessLoader = require('./plugins/addLessLoader_forCRA5')
 const mockMiddleware = require('./plugins/mock-middleware')
 const pkg = require('./package.json')
+const path = require('path')
 
 process.env.REACT_APP_PROJECT_NAME = pkg.name
 
@@ -25,6 +26,10 @@ module.exports = {
         javascriptEnabled: true,
         // modifyVars: { "@primary-color": "#1DA57A" }, // 修改默认主题
       }
+    }),
+    // 路径别名，紧密耦合的文件/组件建议用相对路径引入
+    addWebpackAlias({
+      "@": path.resolve(__dirname, "src")
     }),
     // 替换 moment 为 dayjs
     addWebpackPlugin(new AntdDayjsWebpackPlugin())

@@ -21,7 +21,8 @@
     "noEmit": true,
     "baseUrl": "./",
     "paths": {
-      "*":["src/types/*"]
+      "*":["src/types/*"],
+      "@/*":["src/*"],
     },
     "jsx": "react-jsx"
   },
