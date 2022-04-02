@@ -28,7 +28,7 @@ const UserRoute = {
       component: <UserNew />,
       hideInMenu: true,
     }],
-  },{
+  }, {
     path: 'user-setting',
     permission: 'user-setting',
     name: 'menu.USER_SETTING',

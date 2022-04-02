@@ -12,7 +12,7 @@ const LayoutSettingsDefault = {
   fixedHeader: true,
 };
 
-const PageLayout =() => {
+function PageLayout() {
   const [settings, setSetting] = useState<Partial<ProSettings> | undefined>(LayoutSettingsDefault);
   const location = useLocation();
 
@@ -34,7 +34,7 @@ const PageLayout =() => {
         {...settings}
       >
         <Suspense fallback={<ProSkeleton type="descriptions" />}>
-          <Outlet></Outlet>
+          <Outlet />
         </Suspense>
       </ProLayout>
       <SettingDrawer
@@ -51,5 +51,5 @@ const PageLayout =() => {
       />
     </div>
   );
-};
+}
 export default PageLayout;

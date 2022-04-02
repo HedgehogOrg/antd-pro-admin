@@ -1,4 +1,4 @@
-/// <reference path="./types/index.d.ts" />
+// / <reference path="./types/index.d.ts" />
 
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
@@ -8,7 +8,7 @@ import Config from './config/config';
 import Router from './routes/index';
 
 /* 用于 微前端 qiankun */
-let basename:any = undefined;
+let basename:any;
 if (window.__POWERED_BY_QIANKUN__) {
   basename = `/${Config.PROJECT_NAME}`;
 }
@@ -16,8 +16,9 @@ if (window.__POWERED_BY_QIANKUN__) {
 const render = (props?: any) => {
   ReactDOM.render(
     <BrowserRouter basename={basename}>
-      <Router></Router>
-    </BrowserRouter>, props.container ? props.container.querySelector('#root') : document.getElementById('root'),
+      <Router />
+    </BrowserRouter>,
+    props.container ? props.container.querySelector('#root') : document.getElementById('root'),
   );
 };
 
@@ -30,7 +31,7 @@ if (!window.__POWERED_BY_QIANKUN__) {
  * bootstrap 只会在微应用初始化的时候调用一次，下次微应用重新进入时会直接调用 mount 钩子，不会再重复触发 bootstrap。
  * 通常我们可以在这里做一些全局变量的初始化，比如不会在 unmount 阶段被销毁的应用级别的缓存等。
  */
- export async function bootstrap() {
+export async function bootstrap() {
   console.log('react app bootstraped');
 }
 

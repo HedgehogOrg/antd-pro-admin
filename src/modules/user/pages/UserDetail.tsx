@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { setIntlModule } from '@/utils/utils';
 
-const UserDetail = () => {
+function UserDetail() {
   const navigate = useNavigate();
 
   const t = setIntlModule('user');
@@ -14,6 +14,6 @@ const UserDetail = () => {
       <Button onClick={() => navigate(-1)}>{t('BACK')}</Button>
     </div>
   );
-};
+}
 
 export default UserDetail;

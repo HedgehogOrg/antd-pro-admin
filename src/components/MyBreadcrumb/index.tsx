@@ -3,13 +3,14 @@ import MyRouter from '@/routes/MyRouter';
 import { MyBreadcrumbType } from '@/types/routes';
 
 // 匹配面包屑
-const MyBreadcrumb = (props: MyBreadcrumbType) => {
+function MyBreadcrumb(props: MyBreadcrumbType) {
   const getTextFromBreadcrumbObj = () => {
-    const path = props.pathname.slice(1);
+    const { pathname } = props;
+    const path = pathname.slice(1);
     let bread: string[] = [];
     Object.entries(MyRouter.breadcrumbObj).forEach(([key, value]) => {
       // 匹配 /:id 的情况
-      const regStr = '^' + key.replace(/\/:\w+[^/]/g, '/\\w*[^/]') + '$';
+      const regStr = `^${key.replace(/\/:\w+[^/]/g, '/\\w*[^/]')}$`;
       const reg = new RegExp(regStr);
       if (path.match(reg)) {
         bread = value.split('/');
@@ -19,17 +20,14 @@ const MyBreadcrumb = (props: MyBreadcrumbType) => {
   };
 
   return (
-    <div style={{height: '100%', display: 'flex', alignItems: 'center'}}>
+    <div style={{ height: '100%', display: 'flex', alignItems: 'center' }}>
       <Breadcrumb>
         {
-          getTextFromBreadcrumbObj().map(item =>
-            <Breadcrumb.Item key={item}>{item}</Breadcrumb.Item>,
-            // <a href="">Application Center</a>
-          )
+          getTextFromBreadcrumbObj().map((item) => <Breadcrumb.Item key={item}>{item}</Breadcrumb.Item>)
         }
-    </Breadcrumb>
+      </Breadcrumb>
     </div>
   );
-};
+}
 
 export default MyBreadcrumb;

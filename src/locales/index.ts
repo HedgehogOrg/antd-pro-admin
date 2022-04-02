@@ -1,8 +1,8 @@
 import { makeAutoObservable, runInAction } from 'mobx';
-import { LanguageType, LocalesType } from '@/types/language';
 
 import zhCN from 'antd/lib/locale/zh_CN';
 import zhHK from 'antd/lib/locale/zh_HK';
+import { LanguageType, LocalesType } from '@/types/language';
 
 const languages: LanguageType[] = [{
   name: '简体',
@@ -22,13 +22,17 @@ class Language {
     makeAutoObservable(this);
     this.init();
   }
+
   languages: LanguageType[] = [];
-  get antdLocales () {
+
+  get antdLocales() {
     return this.getLocale('antd');
   }
-  get locales () {
+
+  get locales() {
     return this.getLocale('custom');
   }
+
   init() {
     this.fetchLocals();
   }
@@ -36,7 +40,7 @@ class Language {
   // 生成对应的包
   getLocale(type: string) {
     const tmpLocale: LocalesType = {};
-    this.languages.forEach(item => {
+    this.languages.forEach((item) => {
       tmpLocale[item.value] = item[type as keyof LanguageType];
     });
     return tmpLocale;

@@ -1,5 +1,5 @@
-import login from "./zh-HK/login";
-import menu from "./zh-HK/menu";
+import login from './zh-HK/login';
+import menu from './zh-HK/menu';
 import user from './zh-HK/user';
 
 const message = {

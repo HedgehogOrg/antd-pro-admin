@@ -1,4 +1,6 @@
-import { Form, Input, Button, Checkbox, message } from 'antd';
+import {
+  Form, Input, Button, Checkbox, message,
+} from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
 import user from '@/stores/user';
 import style from './login.module.less';
@@ -13,7 +15,7 @@ export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   const state = location.state as LocationStateType;
-  const from = state?.from?.pathname || '/' ;
+  const from = state?.from?.pathname || '/';
 
   // 多语言
   const t = setIntlModule('login');

@@ -1,11 +1,11 @@
 import React from 'react';
 
-const UserSetting = () => {
+function UserSetting() {
   return (
     <div>
       UserSetting
     </div>
   );
-};
+}
 
 export default UserSetting;

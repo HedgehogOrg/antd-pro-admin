@@ -21,13 +21,14 @@ request.interceptors.response.use((res) => {
   // 网络请求成功
   if (statusCode >= 200 && statusCode <= 299) {
     return res.data;
-  } else if (statusCode >= 400 && statusCode <= 499) {
+  } if (statusCode >= 400 && statusCode <= 499) {
     message.error('客户端请求出错');
   } else if (statusCode >= 500 && statusCode <= 599) {
     message.error('服务器出错');
   }
-  return Promise.reject({ code: statusCode, message: statusText });
-}, error => {
+
+  return Promise.resolve({ code: statusCode, message: statusText });
+}, (error) => {
   // 网络请求失败
   if (error.message === 'Network Error') {
     message.error('网络请求失败');

@@ -18,14 +18,14 @@ import MyRouter from './MyRouter';
 // 特殊页面
 import Login from '@/modules/login/pages/Login';
 import DashboardRoute from './modules/dashboard';
+
 const Page404 = lazy(() => import('@/modules/error-page/pages/Page404'));
 
-const Router = () => {
-
+function Router() {
   /**
    * 初始化语言包
    */
-   intl.init({
+  intl.init({
     currentLocale: user.language,
     locales: { [user.language]: Lang.locales[user.language] },
     warningHandler() {},
@@ -39,25 +39,21 @@ const Router = () => {
   }
 
   return (
-    <>
-    {
-      <ConfigProvider locale={Lang.antdLocales[user.language]}>
-        <Routes>
-          <Route path="/" element={<App />}>
-            {/* fullscreen page */}
-            <Route path='login' element={<Login />}></Route>
-            {/* page with PageLayout */}
-            <Route element={<AuthRequire><PageLayout /></AuthRequire>}>
-              <Route index element={<Navigate to={DashboardRoute.path} />}></Route>
-              { MyRouter.routesElements }
-              <Route path="*" element={<Page404 />}></Route>
-            </Route>
+    <ConfigProvider locale={Lang.antdLocales[user.language]}>
+      <Routes>
+        <Route path="/" element={<App />}>
+          {/* fullscreen page */}
+          <Route path="login" element={<Login />} />
+          {/* page with PageLayout */}
+          <Route element={<AuthRequire><PageLayout /></AuthRequire>}>
+            <Route index element={<Navigate to={DashboardRoute.path} />} />
+            {MyRouter.routesElements}
+            <Route path="*" element={<Page404 />} />
           </Route>
-        </Routes>
-      </ConfigProvider>
-    }
-    </>
+        </Route>
+      </Routes>
+    </ConfigProvider>
   );
-};
+}
 
 export default observer(Router);

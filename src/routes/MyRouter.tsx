@@ -21,8 +21,10 @@ const allRoutes: MenuDataItem[] = [
 const MyRouter = class {
   // permission筛选后的路由
   permissionRoutes: MenuDataItem[] = [];
+
   // 面包屑
   breadcrumbObj: BreadType = {};
+
   // Route Element
   routesElements = [];
 
@@ -42,7 +44,7 @@ const MyRouter = class {
   }
 
   // 根据permission筛选路由
-  filterRoutes (routes: MenuDataItem[] = [], permissions: PermissionType[]) {
+  filterRoutes(routes: MenuDataItem[] = [], permissions: PermissionType[]) {
     const afterFilterRoutes: MenuDataItem[] = [];
     permissions?.forEach((permission: any) => {
       routes.forEach((route) => {
@@ -60,10 +62,10 @@ const MyRouter = class {
   }
 
   // 根据路由生成面包屑对象
-  getBreadcrumbFromRoutes (routes: RouteType[], name: string = '', path: string = '') {
-    routes.forEach(route => {
-      let bread = name && route.name ? `${name}/${route.name}` : (name || route.name || '');
-      let key = `${(path && path !== '/') ? `${path}/` : ''}${route.path || ''}`;
+  getBreadcrumbFromRoutes(routes: RouteType[], name = '', path = '') {
+    routes.forEach((route) => {
+      const bread = name && route.name ? `${name}/${route.name}` : (name || route.name || '');
+      const key = `${(path && path !== '/') ? `${path}/` : ''}${route.path || ''}`;
       if (route.routes?.length) {
         this.getBreadcrumbFromRoutes(route.routes, bread, key);
       }
@@ -74,9 +76,9 @@ const MyRouter = class {
   }
 
   // 根据路由对象生成 Route Element
-  getRoutes (routes: RouteType[], parent?:string): any {
+  getRoutes(routes: RouteType[], parent?:string): any {
     return (
-      routes.map(route => {
+      routes.map((route) => {
         let routeEles: JSX.Element[] = [];
         if (route.path) {
           const path = parent ? `${parent}/${route.path}` : route.path;
