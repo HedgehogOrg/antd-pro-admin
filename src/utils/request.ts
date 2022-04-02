@@ -3,20 +3,30 @@ import axios from 'axios';
 import Config from '@/config/config';
 import user from '@/stores/user';
 
-// 默认基础配置
-const request = axios.create({
-  baseURL: Config.BASE_URL,
-  timeout: 20000,
-});
+export type RequestOptions = {
+  url: string;
+  method?: string;
+  data?: object;
+  version?: string;
+};
+
+export enum APIVersion {
+  V1 = 'v1',
+  V2 = 'v2',
+  V3 = 'v3',
+}
+
+axios.defaults.baseURL = Config.BASE_URL;
+axios.defaults.timeout = 20000;
 
 // 请求前拦截
-request.interceptors.request.use((req) => {
+axios.interceptors.request.use((req) => {
   req.headers!.Authorization = user.token;
   return req;
 });
 
 // 返回前拦截
-request.interceptors.response.use((res) => {
+axios.interceptors.response.use((res) => {
   const { status: statusCode, statusText } = res;
   // 网络请求成功
   if (statusCode >= 200 && statusCode <= 299) {
@@ -37,5 +47,34 @@ request.interceptors.response.use((res) => {
   }
   return Promise.reject(error);
 });
+
+const fetch = (options: RequestOptions) => {
+  const {
+    url, method = 'get', data,
+  } = options;
+
+  switch (method.toLowerCase()) {
+    case 'get':
+      return axios.get(url, {
+        params: data,
+      });
+    case 'post':
+      return axios.post(url, data);
+    case 'put':
+      return axios.put(url, data);
+    case 'delete':
+      return axios.delete(url, { data });
+    default:
+      return axios.get(url, {
+        params: data,
+      });
+  }
+};
+
+const request = (options: RequestOptions) => fetch(options)
+  .then((res) => res)
+  .catch((err) => {
+    console.log(err);
+  });
 
 export default request;

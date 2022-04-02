@@ -1,6 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import { LoginType, UserType } from '@/types/stores/user';
-import request from '@/utils/request';
+// import request from '@/utils/request';
+import { login } from '@/apis/login';
 
 const localToken = localStorage.getItem('ADMIN_TOKEN') || '';
 const localUser = JSON.parse(localStorage.getItem('ADMIN_USER_INFO') || '{}');
@@ -58,7 +59,7 @@ class User {
 
   // 登录
   login(values: LoginType) {
-    return request.post('/login-test', values).then((data) => {
+    return login(values).then((data) => {
       // 记录登录状态
       this.setToken(JSON.stringify(data));
       // 模拟生成一些数据
