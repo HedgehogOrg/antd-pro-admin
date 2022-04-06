@@ -4,6 +4,7 @@ const addLessLoader = require('./plugins/addLessLoader_forCRA5');
 const mockMiddleware = require('./plugins/mock-middleware');
 const pkg = require('./package.json');
 const path = require('path');
+const webpack = require('webpack');
 
 process.env.REACT_APP_PROJECT_NAME = pkg.name;
 
@@ -32,7 +33,9 @@ module.exports = {
       "@": path.resolve(__dirname, "src")
     }),
     // 替换 moment 为 dayjs
-    addWebpackPlugin(new AntdDayjsWebpackPlugin())
+    addWebpackPlugin(new AntdDayjsWebpackPlugin()),
+    // 业务代码中可通过process.env.APP_ENV访问到.env[development|test|production]中设置的环境变量
+    addWebpackPlugin(new webpack.DefinePlugin({"process.env.APP_ENV": JSON.stringify(process.env.APP_ENV)}))
   ),
   devServer: override(
     (configFunction) => {
