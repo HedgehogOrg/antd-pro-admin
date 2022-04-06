@@ -2,6 +2,7 @@ import { message } from 'antd';
 import axios from 'axios';
 import Config from '@/config/config';
 import user from '@/stores/user';
+import { APIVersion, Method } from '@/enums';
 
 export type RequestOptions = {
   url: string;
@@ -10,34 +11,33 @@ export type RequestOptions = {
   version?: string;
 };
 
-export enum APIVersion {
-  V1 = 'v1',
-  V2 = 'v2',
-  V3 = 'v3',
-}
-
 axios.defaults.baseURL = Config.BASE_URL;
 axios.defaults.timeout = 20000;
+axios.defaults.headers.common = {
+  'X-Api-Ver': '1.0',
+  'Content-Type': 'application/json',
+};
 
 // 请求前拦截
 axios.interceptors.request.use((req) => {
   req.headers!.Authorization = user.token;
   return req;
-});
+}, (err) => Promise.reject(err));
 
 // 返回前拦截
 axios.interceptors.response.use((res) => {
   const { status: statusCode, statusText } = res;
+
   // 网络请求成功
   if (statusCode >= 200 && statusCode <= 299) {
     return res.data;
   } if (statusCode >= 400 && statusCode <= 499) {
-    message.error('客户端请求出错');
-  } else if (statusCode >= 500 && statusCode <= 599) {
-    message.error('服务器出错');
+    message.error('客户端请求错误');
+  } if (statusCode >= 500 && statusCode <= 599) {
+    message.error('服务器错误');
   }
 
-  return Promise.resolve({ code: statusCode, message: statusText });
+  return Promise.reject({ code: statusCode, message: statusText });
 }, (error) => {
   // 网络请求失败
   if (error.message === 'Network Error') {
@@ -50,19 +50,21 @@ axios.interceptors.response.use((res) => {
 
 const fetch = (options: RequestOptions) => {
   const {
-    url, method = 'get', data,
+    url, method = Method.GET, data, version = APIVersion.V1,
   } = options;
 
+  axios.defaults.headers.common.Accept = `application/vnd.sd.${version}+json`;
+
   switch (method.toLowerCase()) {
-    case 'get':
+    case Method.GET:
       return axios.get(url, {
         params: data,
       });
-    case 'post':
+    case Method.POST:
       return axios.post(url, data);
-    case 'put':
+    case Method.PUT:
       return axios.put(url, data);
-    case 'delete':
+    case Method.DELETE:
       return axios.delete(url, { data });
     default:
       return axios.get(url, {
@@ -73,8 +75,6 @@ const fetch = (options: RequestOptions) => {
 
 const request = (options: RequestOptions) => fetch(options)
   .then((res) => res)
-  .catch((err) => {
-    console.log(err);
-  });
+  .catch((err) => Promise.reject(err));
 
 export default request;

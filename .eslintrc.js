@@ -23,6 +23,7 @@ module.exports = {
     "no-underscore-dangle": 0,
     "consistent-return":"warn",
     "no-nested-ternary":"warn",
+    "prefer-promise-reject-errors": 0,
     "import/prefer-default-export": 0,
     "import/extensions": 0,
     "no-use-before-define": "off",

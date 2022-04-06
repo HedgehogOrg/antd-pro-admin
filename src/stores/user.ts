@@ -1,6 +1,5 @@
 import { makeAutoObservable } from 'mobx';
 import { LoginType, UserType } from '@/types/stores/user';
-// import request from '@/utils/request';
 import { login } from '@/apis/login';
 
 const localToken = localStorage.getItem('ADMIN_TOKEN') || '';
@@ -65,7 +64,7 @@ class User {
       // 模拟生成一些数据
       this.setUser({ ...data, role: { type: 1, name: '超级管理员' } });
       return data;
-    });
+    }).catch((err) => Promise.reject(err));
   }
 
   // 退出

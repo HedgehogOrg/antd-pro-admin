@@ -30,6 +30,8 @@ export default function Login() {
       message.success(t('LOGIN_SUCCESS'));
       // 跳转
       navigate(from, { replace: true });
+    }).catch((err) => {
+      console.warn(err);
     });
   };
 
