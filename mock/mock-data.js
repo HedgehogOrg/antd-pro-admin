@@ -4,39 +4,13 @@
  * 可直接是json对象：{}
  * 也可以是自定义函数：async (req, res) => { res.status(200).end() }
  */
+const { Login } = require('./Login');
+
 module.exports = {
   GET: {
-    '/mock': {
-      hello: 'world'
-    }
+    ...Login.GET,
   },
   POST: {
-    '/login-test': async (req, res) => {
-      setTimeout(() => {
-        res.json({
-          username: 'admin',
-          permission: [{
-            menu: 'dashboard'
-          }, {
-            menu: 'user',
-            children: [{
-              menu: 'user-list',
-              children: [{
-                menu: 'user-detail'
-              }, {
-                menu: 'user-new'
-              }]
-            }, {
-              menu: 'user-setting'
-            }]
-          }, {
-            menu: 'role',
-            children: [{
-              menu: 'role-list'
-            }]
-          }]
-        })
-      }, 2000)
-    }
+    ...Login.POST,
   }
 }
