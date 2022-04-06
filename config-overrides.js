@@ -48,11 +48,16 @@ module.exports = {
           'Access-Control-Allow-Method': 'GET, HEAD, OPTIONS, POST, PUT',
           'Access-Control-Allow-Headers': '*'
         };
-        config.setupMiddlewares = (middlewares, devServer) => {
-          /* mock */
-          middlewares.push(mockMiddleware);
-          return middlewares;
-        };
+
+        // 只在开发环境中使用mock数据
+        if(process.env.APP_ENV === 'dev') {
+          config.setupMiddlewares = (middlewares, devServer) => {
+            /* mock */
+            middlewares.push(mockMiddleware);
+            return middlewares;
+          };
+        }
+        
         return config;
       };
     }
