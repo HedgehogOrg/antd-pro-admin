@@ -4,7 +4,8 @@
   "private": true,
   "main": "index.tsx",
   "scripts": {
-    "start": "react-app-rewired start",
+    "start": " env-cmd -f .env.development react-app-rewired start",
+    "start:mock": "env-cmd -f .env.development.mock react-app-rewired start",
     "start:test": "env-cmd -f .env.test react-app-rewired start",
     "start:prod": "env-cmd -f .env.production react-app-rewired start",
     "test": "react-app-rewired test",

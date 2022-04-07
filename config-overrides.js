@@ -49,8 +49,8 @@ module.exports = {
           'Access-Control-Allow-Headers': '*'
         };
 
-        // 只在开发环境中使用mock数据
-        if(process.env.APP_ENV === 'dev') {
+        // 在开发环境中且USE_MOCK时，使用mock数据
+        if(process.env.APP_ENV === 'dev' && process.env.USE_MOCK) {
           config.setupMiddlewares = (middlewares, devServer) => {
             /* mock */
             middlewares.push(mockMiddleware);
