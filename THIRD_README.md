@@ -9,3 +9,7 @@
 `antd`内置的`Moment.js`插件已经改为`Day.js`，统一使用`Day.js`
 
   [https://day.js.org/zh-CN/](https://day.js.org/zh-CN/)
+
+## Mockjs
+生成随机的mock数据
+[http://mockjs.com/](http://mockjs.com/)
