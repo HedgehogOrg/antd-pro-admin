@@ -11,7 +11,7 @@ export type RequestOptions = {
   version?: string;
 };
 
-axios.defaults.baseURL = Config.BASE_URL;
+axios.defaults.baseURL = `${Config.BASE_URL}/api`;
 axios.defaults.timeout = 20000;
 axios.defaults.headers.common = {
   'X-Api-Ver': '1.0',

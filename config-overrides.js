@@ -35,7 +35,10 @@ module.exports = {
     // 替换 moment 为 dayjs
     addWebpackPlugin(new AntdDayjsWebpackPlugin()),
     // 业务代码中可通过process.env.APP_ENV访问到.env[development|test|production]中设置的环境变量
-    addWebpackPlugin(new webpack.DefinePlugin({"process.env.APP_ENV": JSON.stringify(process.env.APP_ENV)}))
+    addWebpackPlugin(new webpack.DefinePlugin({
+      "process.env.APP_ENV": JSON.stringify(process.env.APP_ENV),
+      "process.env.BASE_URL": JSON.stringify(process.env.BASE_URL)
+    }))
   ),
   devServer: override(
     (configFunction) => {
