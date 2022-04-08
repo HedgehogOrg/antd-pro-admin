@@ -8,19 +8,18 @@
  * Mockjs官网：http://mockjs.com/
  * 示例：http://mockjs.com/examples.html
 */
-
 const Mock = require('mockjs')
 
-const Login = {
+module.exports = {
   GET: {
-    '/mock': Mock.mock({
+    '/api/mock': Mock.mock({
       'list|1-10': [{
           'id|+1': 1
       }]
     })
   },
   POST: {
-    '/login-test': async (req, res) => {
+    '/api/login-test': async (req, res) => {
       setTimeout(() => {
         res.json({
           username: 'admin',
@@ -49,7 +48,3 @@ const Login = {
     }
   }
 }
-
-console.log(Login.GET['/mock']);
-
-exports.Login = Login;
