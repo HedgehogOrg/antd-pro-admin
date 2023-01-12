@@ -1,5 +1,5 @@
 import { Navigate, useLocation } from 'react-router-dom';
-import user from '@/stores/user';
+import user from '@/stores/auth/UserStore';
 
 export default function AuthRequire(props: any) {
   const { children } = props;

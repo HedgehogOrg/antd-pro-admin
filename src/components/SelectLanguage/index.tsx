@@ -1,5 +1,5 @@
 import { Dropdown, Menu, Tag } from 'antd';
-import user from '@/stores/user';
+import user from '@/stores/auth/UserStore';
 import Lang from '@/locales/index';
 
 function SelectLanguage() {

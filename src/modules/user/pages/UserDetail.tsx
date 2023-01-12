@@ -1,12 +1,12 @@
 import React from 'react';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { setIntlModule } from '@/utils/utils';
+import { useIntl } from '@/utils/intl';
 
 function UserDetail() {
   const navigate = useNavigate();
 
-  const t = setIntlModule('user');
+  const t = useIntl('user');
 
   return (
     <div>

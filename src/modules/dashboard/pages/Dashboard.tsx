@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
 import ChartsArea from '../components/ChartsArea';
-import user from '@/stores/user';
+import user from '@/stores/auth/UserStore';
 
 function Dashboard() {
   return (

@@ -3,7 +3,7 @@ import { Button, DatePicker } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import intl from 'react-intl-universal';
 import Dayjs from 'dayjs';
-import user from '@/stores/user';
+import user from '@/stores/auth/UserStore';
 
 function UserList() {
   const navigate = useNavigate();

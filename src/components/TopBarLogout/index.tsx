@@ -2,7 +2,7 @@ import { Dropdown, Menu, Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import intl from 'react-intl-universal';
-import user from '@/stores/user';
+import user from '@/stores/auth/UserStore';
 import SelectLanguage from '../SelectLanguage';
 
 function TopBarLogout() {
@@ -14,8 +14,8 @@ function TopBarLogout() {
   };
   const menu = (
     <Menu>
-      <Menu.Item onClick={logout} key={user.user.username}>
-        {user.user.username}
+      <Menu.Item onClick={logout} key={user.user.name}>
+        {user.user.name}
         {' '}
         {intl.get('login.LOGOUT')}
       </Menu.Item>

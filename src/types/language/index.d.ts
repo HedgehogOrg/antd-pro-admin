@@ -12,5 +12,8 @@ interface LanguageType {
   // antd语言包（日期、日历等插件）
   antd: Locale,
   // 自定义语言包（业务语言）
-  custom: Promise<any>,
+  custom: LocalesType
+}
+interface IntlModule {
+  [key: string]: Function;
 }

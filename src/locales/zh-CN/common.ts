@@ -1,0 +1,25 @@
+const common = {
+  MISSING_PAGE: '对不起，您浏览的网页不存在。',
+  BACK_TO_HOME: '返回主页',
+  MENU: '菜单',
+  ACTION: '操作',
+  EDIT: '编辑',
+  DELETE: '删除',
+  SAVE: '保存',
+  REMARK: '备注',
+  STATUS: '状态',
+  ENABLE: '启用',
+  DISENABLE: '禁用',
+  RESET: '重置',
+  QUERY: '查询',
+  CANCEL: '取消',
+  CONFIRM: '确定',
+  SUCCESS: '成功',
+  CREATEAT: '创建时间',
+  CREATOR: '创建人',
+  NO_LIMIT: '全部',
+  DETAIL: '详情',
+  MORE: '更多',
+};
+
+export default common;

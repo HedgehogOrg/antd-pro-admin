@@ -11,8 +11,13 @@ const path = require('path');
 const mockDir = path.join(__dirname, '../mock');
 const mockData = {
   GET: {},
-  POST: {}
-};
+  POST: {},
+  PUT: {},
+  PATCH: {},
+  DELETE: {},
+  OPTIONS: {},
+  HEAD: {},
+}
 
 function readdirSync(dir, isRoot) {
   const files = fs.readdirSync(dir);
@@ -25,11 +30,12 @@ function readdirSync(dir, isRoot) {
     } else {
       if (!(isRoot && file === 'index.js')) {
         const moduleFile = eval(
-          fs.readFileSync(`${dir}/${file}`, { encoding: 'utf8' }) || {},
-        );
+          fs.readFileSync(`${dir}/${file}`, { encoding: 'utf8' }) || {}
+        )
 
-        Object.assign(mockData.GET, moduleFile.GET);
-        Object.assign(mockData.POST, moduleFile.POST);
+        Object.keys(mockData).forEach((method) => {
+          Object.assign(mockData[method], moduleFile[method])
+        })
       }
     }
   });

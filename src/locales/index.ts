@@ -1,29 +1,52 @@
-import { makeAutoObservable, runInAction } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 
 import zhCN from 'antd/lib/locale/zh_CN';
-import zhHK from 'antd/lib/locale/zh_HK';
+import zhTW from 'antd/lib/locale/zh_TW';
+import 'dayjs/locale/zh-cn';
+import 'dayjs/locale/zh-tw';
+import zhCNCustom from './zh-CN';
+import zhTWCustom from './zh-HK';
 import { LanguageType, LocalesType } from '@/types/language';
 
-const languages: LanguageType[] = [{
+export const languages: LanguageType[] = [{
   name: '简体',
   value: 'zh-CN',
   antd: zhCN,
-  custom: import('./zh-CN'),
+  custom: zhCNCustom,
 }, {
   name: '繁体',
-  value: 'zh-HK',
-  antd: zhHK,
-  custom: import('./zh-HK'),
+  value: 'zh-TW',
+  antd: zhTW,
+  custom: zhTWCustom,
 }];
+
+export function getLanguage() {
+  const supportLanguages = languages.map((lang) => lang.value);
+  const localeLanguage = () => {
+    if (Intl) {
+      return Intl.NumberFormat().resolvedOptions().locale;
+    }
+    if (navigator.languages && navigator.languages.length) {
+      return navigator.languages[0];
+    }
+    return '';
+  };
+
+  const tmpLanguage = localStorage.getItem('ADMIN_LANGUAGE')
+    || localeLanguage();
+  if (supportLanguages.indexOf(tmpLanguage) !== -1) {
+    return tmpLanguage === 'zh-HK' ? 'zh-TW' : tmpLanguage;
+  }
+  return supportLanguages[0];
+}
 
 // 定义语言包
 class Language {
   constructor() {
     makeAutoObservable(this);
-    this.init();
   }
 
-  languages: LanguageType[] = [];
+  languages: LanguageType[] = languages;
 
   get antdLocales() {
     return this.getLocale('antd');
@@ -33,10 +56,6 @@ class Language {
     return this.getLocale('custom');
   }
 
-  init() {
-    this.fetchLocals();
-  }
-
   // 生成对应的包
   getLocale(type: string) {
     const tmpLocale: LocalesType = {};
@@ -44,22 +63,6 @@ class Language {
       tmpLocale[item.value] = item[type as keyof LanguageType];
     });
     return tmpLocale;
-  }
-
-  // 异步加载语言包
-  async fetchLocals() {
-    const tmpArr: LanguageType[] = [];
-    for (let index = 0; index < languages.length; index++) {
-      const lan = languages[index];
-      const tmpLocal = await lan.custom;
-      tmpArr.push({
-        ...lan,
-        custom: tmpLocal.default,
-      });
-    }
-    runInAction(() => {
-      this.languages = tmpArr;
-    });
   }
 }
 
