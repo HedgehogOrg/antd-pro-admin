@@ -29,8 +29,10 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@ant-design/pro-components": "^2.3.52",
     "@ant-design/pro-layout": "^6.38.22",
     "@ant-design/pro-skeleton": "^1.0.4",
+    "@ant-design/pro-table": "^3.2.12",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",

@@ -114,6 +114,6 @@ export interface FilterMenuPermission {
  * 平台类型属性
  */
 export interface ModulePanelProps {
-  platform: Platform;
+  // platform: Platform;
   treeListApi: Function;
 }
