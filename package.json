@@ -28,6 +28,7 @@
     ]
   },
   "dependencies": {
+    "@ant-design/compatible": "^5.1.1",
     "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-components": "^2.3.52",
     "@ant-design/pro-layout": "^6.38.22",
@@ -36,7 +37,7 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
-    "antd": "^4.18.2",
+    "antd": "^5.1.6",
     "axios": "^0.24.0",
     "buffer": "^6.0.3",
     "crypto-js": "^4.1.1",

@@ -231,7 +231,7 @@ function EditAcls({
       <Modal
         centered
         title={<span onDoubleClick={pastePermission}>{`${isEdit ? intl.EDIT : t('ADD')}${t('PERMISSION')}`}</span>}
-        visible={isModalVisible}
+        open={isModalVisible}
         destroyOnClose
         onCancel={handleCancel}
         footer={[

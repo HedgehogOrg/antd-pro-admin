@@ -31,7 +31,7 @@ export default function PasswordChangeModal(props: Props) {
       if (!data.errorFields) {
         const { oldPassword, newPassword, confirmPassword } = data;
         if (newPassword !== confirmPassword) {
-          message.warn(t('PASSWORD_NOT_IDENTICAL'));
+          message.warning(t('PASSWORD_NOT_IDENTICAL'));
         } else {
           onOk({ oldPassword, newPassword, confirmPassword });
         }
@@ -56,7 +56,7 @@ export default function PasswordChangeModal(props: Props) {
 
   const modalProps = {
     title: t('CHANGE_PASSWORD'),
-    visible: isModalVisible,
+    open: isModalVisible,
     maskClosable: false,
     onOk: handleOk,
     onCancel: handleCancel,

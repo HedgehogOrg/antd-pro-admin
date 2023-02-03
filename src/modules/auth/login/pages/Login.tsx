@@ -35,8 +35,6 @@ export default function Login() {
   // 本地校验成功
   const onFinish = (values: any) => {
     setLoading(true);
-    console.log('111');
-
     user.login(values, { showErrorMessage: false }).then(() => {
       message.success(i18n('LOGIN_SUCCESS'));
     }).catch((err:any) => {

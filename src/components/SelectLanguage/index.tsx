@@ -1,20 +1,25 @@
-import { Dropdown, Menu, Tag } from 'antd';
+import {
+  Button,
+  Dropdown, MenuProps, Tag,
+} from 'antd';
 import user from '@/stores/auth/UserStore';
 import Lang from '@/locales/index';
 
 function SelectLanguage() {
-  const LanguageList = (
-    <Menu selectedKeys={[user.language]}>
-      {
-      Lang.languages.map((item) => (
-        <Menu.Item key={item.value} onClick={() => user.setLanguage(item.value)}>{item.name}</Menu.Item>
-      ))
-    }
-    </Menu>
-  );
-
+  const items:MenuProps['items'] = Lang.languages.map((item) => ({
+    key: item.value,
+    label: (
+      <Button
+        onClick={() => user.setLanguage(item.value)}
+        key={item.value}
+        type="link"
+      >
+        {item.name}
+      </Button>
+    ),
+  }));
   return (
-    <Dropdown overlay={LanguageList} placement="bottomRight">
+    <Dropdown menu={{ items }} placement="bottomRight">
       <Tag color="cyan">{Lang.languages.find((lan) => lan.value === user.language)?.name}</Tag>
     </Dropdown>
   );
