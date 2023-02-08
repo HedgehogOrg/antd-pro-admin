@@ -7,10 +7,14 @@
 
 // export { setIntlModule };
 import { Buffer } from 'buffer';
+import cloneDeep from 'lodash/cloneDeep';
 
 const decodeBase64 = (str: string): string => Buffer.from(str, 'base64').toString('binary');
 
 const encodeBase64 = (str: string): string => Buffer.from(str, 'binary').toString('base64');
+
+// 注意lodash引入方式，避免引入整个包
+const deepClone = (obj: any) => cloneDeep(obj);
 
 /**
  * 对函数进行递归排序（children嵌套）
@@ -121,7 +125,109 @@ function secondsToStr(sec: number) {
   // eslint-disable-next-line no-nested-ternary
   return h > 0 ? `${h}小时${m}分钟${s}秒` : (m > 0 ? `${m}分钟${s}秒` : `${s}秒`);
 }
+/**
+ * 秒转时分（Date）
+ * @param   {number}     second
+ * @return  {String}
+ */
+const secondToDate:(second:number) => string = (second: number) => {
+  let minutes = 0; // 分
+  let hours = 0; // 小时
+
+  if (second >= 60) {
+    minutes = parseInt(String(second / 60), 10);
+
+    if (minutes >= 60) {
+      hours = parseInt(String(minutes / 60), 10);
+      minutes = parseInt(String(minutes % 60), 10);
+    }
+  }
+  let result = '';
+  if (minutes > 0) {
+    result = `${parseInt(String(minutes), 10) < 10 ? `0${parseInt(String(minutes), 10)}` : parseInt(String(minutes), 10)}`;
+  } else if (minutes === 0) {
+    result = '00';
+  }
+  if (hours > 0) {
+    result = `${parseInt(String(hours), 10)}:${result}`;
+  } else if (hours === 0) {
+    result = `00:${result}`;
+  }
+  return result;
+};
+/**
+ * 秒转时分（String）
+ * @param   {number}     second
+ * @return  {String}
+ */
+const secondToString = (second:number) => {
+  let minutes = 0; // 分
+  let hours = 0; // 小时
+
+  if (second >= 60) {
+    minutes = parseInt(String(second / 60), 10);
+
+    if (minutes >= 60) {
+      hours = parseInt(String(minutes / 60), 10);
+      minutes = parseInt(String(minutes % 60), 10);
+    }
+  }
+  let result;
+  if (minutes > 0) {
+    result = `${parseInt(String(minutes), 10)}分钟`;
+  } else if (minutes === 0) {
+    result = '';
+  }
+  if (hours > 0) {
+    result = `${parseInt(String(hours), 10)}小时${result}`;
+  }
+  return result;
+};
+/**
+ * 秒转小时（Decimal）
+ * @param   {number}     second
+ * @return  {float}
+ */
+const secondToDecimal = (second:number) => {
+  let minutes = 0; // 分
+  let hours = 0; // 小时
+
+  if (second > 60) {
+    minutes = parseInt(String(second / 60), 10);
+
+    if (minutes > 60) {
+      hours = parseFloat(String(minutes / 60));
+    }
+  }
+  let result;
+  if (minutes >= 0) {
+    result = parseFloat(String(minutes / 60));
+  }
+  if (hours > 0) {
+    result = hours;
+  }
+  return result;
+};
+/**
+ * @param urlStr url
+ * @return 最终JSON结果对象
+ *
+ * ps: url参数转json对象
+ */
+const urlQuery2Json = function (urlStr?:string) { // 传入的url字符串
+  const url = urlStr || window.location.href; // 获取当前浏览器的URL
+
+  const param:any = {}; // 存储最终JSON结果对象
+
+  url.replace(/([^?&]+)=([^?&]+)/g, (s, v, k) => {
+    param[v] = decodeURIComponent(k);// 解析字符为中文
+
+    return `${k}=${v}`;
+  });
+
+  return param;
+};
 
 export {
-  encodeBase64, decodeBase64, sort, addParents, flattenTree, trim, uniqueArr, secondsToStr,
+  encodeBase64, decodeBase64, sort, addParents, flattenTree, trim, uniqueArr, secondsToStr, deepClone, secondToDecimal, secondToDate, secondToString, urlQuery2Json,
 };

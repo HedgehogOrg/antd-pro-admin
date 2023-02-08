@@ -21,4 +21,9 @@ enum PermissionType {
   MENU = 1,
   BUTTON = 2,
 }
-export { Method, APIVersion, PermissionType };
+
+enum ReportType {
+  COMMON_REPORT = 0, // 通用报告
+  PATIENT_REPORT = 1, // 院内患者报告
+}
+export { Method, APIVersion, PermissionType, ReportType };

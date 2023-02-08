@@ -1,0 +1,8 @@
+enum ReportCreateButtonEnum {
+  // 提交报告
+  GENERATE_PDF = 'GENERATE_PDF',
+  GENERATE_PDF_RES = 'GENERATE_PDF_RES',
+  GENERATE_PDF_SUCCESS = 'GENERATE_PDF_SUCCESS',
+  GENERATE_PDF_FAILED = 'GENERATE_PDF_FAILED',
+}
+export default ReportCreateButtonEnum;

@@ -1,0 +1,28 @@
+.notice-list {
+  &-header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-bottom: 20px;
+   padding: 0 20px;
+   color: #333;
+
+   &-readall {
+    color: #666;
+    cursor: pointer;
+    transition: all 0.1s ease-in;
+
+    &:hover {
+      color: #333;
+    }
+   }
+  }
+
+  &-footer {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    font-size: 12px;
+    color: #666;
+  }
+}

@@ -9,5 +9,7 @@ const menu = {
   // USER_SETTING: '用戶配置',
   SYSTEM: '系統管理',
   SYSTEM_MODULES: '模塊管理',
+  SYSTEM_ACCOUNT: '賬號管理',
+
 };
 export default menu;

@@ -4,7 +4,7 @@ import {
   // ApartmentOutlined,
 } from '@ant-design/icons';
 import SystemModulesRoute from './SystemModulesRoute';
-// import AccountRoute from './AccountRoute';
+import AccountRoute from './AccountRoute';
 // import RoleListRoute from './RoleListRoute';
 // import SystemLogsRoute from './SystemLogsRoute';
 
@@ -18,7 +18,7 @@ const SystemRoute = {
   icon: <SettingOutlined />,
   routes: [
     SystemModulesRoute,
-    // AccountRoute,
+    AccountRoute,
     // {
     //   path: 'department',
     //   icon: <ApartmentOutlined />,

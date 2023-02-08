@@ -30,6 +30,14 @@ module.exports = {
     'react/no-unstable-nested-components': 0,
     'react/require-default-props': [0, { ignoreFunctionalComponents: true }],
     'import/no-cycle': [0, { ignoreExternal: true }],
+    'object-curly-newline': 0,
+    'implicit-arrow-linebreak': 0,
+    'operator-linebreak': 0,
+    'function-paren-newline': 0,
+    'jsx-a11y/click-events-have-key-events': 0,
+    'jsx-a11y/no-static-element-interactions': 0,
+    'linebreak-style': ["off", "windows"],
+    // 'react/jsx-wrap-multilines': 0
     // 'treatUndefinedAsUnspecified': false
   },
 }

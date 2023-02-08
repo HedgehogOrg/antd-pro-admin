@@ -9,6 +9,7 @@ const menu = {
   // USER_SETTING: '用户配置',
   SYSTEM: '系统管理',
   SYSTEM_MODULES: '模块管理',
+  SYSTEM_ACCOUNT: '账号管理',
 
 };
 export default menu;
