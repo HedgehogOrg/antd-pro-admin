@@ -43,7 +43,7 @@ function EditAccountModal(props: ModalType) {
   const [switchStatus, setswitchStatus] = useState(1);
   const [initialValues, setInitialValues] = useState<CreateAccountTansformType>();
   const {
-    visible, closeModal, tableRef, editId,
+    visible, closeModal, tableRef, editId, isEdit,
   } = props;
   // 修改过表单才需要做取消提醒
   const [showCancelWarning, setShowCancelWarning] = useState(false);
@@ -51,7 +51,7 @@ function EditAccountModal(props: ModalType) {
   const [form] = Form.useForm();
   // 获取账号详情
   useEffect(() => {
-    if (editId !== undefined) {
+    if (isEdit && editId !== undefined) {
       AccountStore.accountsDetail({ id: editId, expand: 'departments' })
         .then((res: EditAccountRequestType) => {
           const {
@@ -89,7 +89,7 @@ function EditAccountModal(props: ModalType) {
   };
   const finnishEdit = (values: CreateAccountTansformType) => {
     const {
-      name, account, remark, roleId, departmentIds, avatar, status,
+      name, account, remark, roleId, departmentIds, avatar, status, password,
     } = values;
     // 判断avatar是否有值
     const avatarUrl = (avatar !== undefined && avatar.length > 0) ? avatar[0].url : undefined;
@@ -102,17 +102,37 @@ function EditAccountModal(props: ModalType) {
       departmentIds: departments,
       avatar: avatarUrl,
       status,
+      password: !isEdit ? password : undefined,
     };
+    if (isEdit) {
+      return new Promise((resolve, reject) => {
+        AccountStore.edit(editId as number, data)
+          .then((res) => {
+            message.success(t('EDIT_SUCCESS'));
+            tableRef.current?.reload();
+            closeModal();
+            resolve(res);
+          })
+          .catch((err) => {
+            message.error(t('EDIT_FAILURE'));
+            reject(err);
+          });
+      });
+    }
     return new Promise((resolve, reject) => {
-      AccountStore.edit(editId as number, data)
+      AccountStore.create(data)
         .then((res) => {
-          message.success(t('EDIT_SUCCESS'));
+          message.success(t('ADD_SUCCESS'));
           tableRef.current?.reload();
           closeModal();
           resolve(res);
         })
         .catch((err) => {
-          message.error(t('EDIT_FAILURE'));
+          if (err.statusCode === 409) {
+            message.error(t('DUPLICATE_LOGIN_ACCOUNT'));
+          } else {
+            message.error(t('ADD_FAILURE'));
+          }
           reject(err);
         });
     });
@@ -148,6 +168,11 @@ function EditAccountModal(props: ModalType) {
       { required: true, message: t('LOGIN_ACCOUNT_CANNOT_BE_EMPTY') },
       { validator: checkAccount },
     ],
+    password: [
+      { required: true, message: t('LOGIN_PASSWORD_CANNOT_BE_EMPTY'), whitespace: true },
+      { min: 6, message: t('THE_LOGIN_PASSWORD_FORMAT_IS_INCORRECT') },
+      { validator: checkAccount },
+    ],
     role: [
       { required: !Super, message: t('ROLE_CANNOT_BE_EMPTY') },
     ],
@@ -181,14 +206,14 @@ function EditAccountModal(props: ModalType) {
   return (
     <Modal
       centered
-      title={t('EDIT_ACCOUNT')}
-      visible={visible}
+      title={isEdit ? t('EDIT_ACCOUNT') : t('CREATE_ACCOUNT')}
+      open={visible}
       onCancel={handleCancel}
       forceRender
       footer={null}
       maskClosable={false}
     >
-      {initialValues === undefined ? <Skeleton active paragraph={{ rows: 9 }} /> : (
+      {isEdit && initialValues === undefined ? <Skeleton active paragraph={{ rows: 9 }} /> : (
         <Form
           layout="horizontal"
           {...formItemLayout}
@@ -217,9 +242,22 @@ function EditAccountModal(props: ModalType) {
             <Input
               placeholder={t('LEASE_ENTER_LOGIN_ACCOUNT_MOBILE_PHONE_NUMBER')}
               maxLength={16}
-              disabled
+              disabled={!!isEdit}
             />
           </Form.Item>
+          {!isEdit && (
+          <Form.Item
+            name="password"
+            label={t('LOGIN_PASSWORD')}
+            rules={rules.password}
+            getValueFromEvent={getValidateValue}
+          >
+            <Input
+              placeholder={t('PLEASE_ENTER_LOGIN_PASSWORD')}
+              maxLength={16}
+            />
+          </Form.Item>
+          )}
           <Form.Item
             name="roleId"
             label={t('ROLE')}
@@ -230,7 +268,7 @@ function EditAccountModal(props: ModalType) {
               tableRef={tableRef}
               visible={visible}
               placeholder={t('PLEASE_SELECT_ROLE')}
-              disabled={Super === 1}
+              disabled={isEdit ? Super === 1 : false}
             />
           </Form.Item>
           <Form.Item
@@ -243,7 +281,7 @@ function EditAccountModal(props: ModalType) {
               title={t('PLEASE_SELECT_DEPARTMENT')}
               tableRef={tableRef}
               visible={visible}
-              disabled={Super === 1}
+              disabled={isEdit ? Super === 1 : false}
             />
           </Form.Item>
           <Form.Item

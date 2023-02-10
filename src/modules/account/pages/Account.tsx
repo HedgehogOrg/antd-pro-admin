@@ -13,7 +13,7 @@
  */
 
 import React, {
- ReactElement, useCallback, useEffect, useRef, useState,
+  ReactElement, useCallback, useEffect, useRef, useState,
 } from 'react';
 import {
   PlusOutlined,
@@ -24,12 +24,12 @@ import {
   LoadingOutlined,
 } from '@ant-design/icons';
 import {
- Space, message, Popover, Spin,
+  Space, message, Popover, Spin,
 } from 'antd';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import { observer } from 'mobx-react';
 import CustomProTable from '@/components/CustomProTable';
-import CreateAccountModal from '@/modules/account/components/CreateAccountModal';
+// import CreateAccountModal from '@/modules/account/components/CreateAccountModal';
 import EditAccountModal from '@/modules/account/components/EditAccountModal';
 import WithActionBtn from '@/components/WithActionBtn';
 import DeleteAccount from '../components/DeleteAccount';
@@ -61,60 +61,63 @@ function Account() {
 
   const tableRef = useRef<ActionType>();
   // 新建账号模态框
-  const [createModalVisible, setCreateModalVisible] = useState(false);
+  // const [createModalVisible, setCreateModalVisible] = useState(false);
   // 编辑账号模态框
-  const [editModalVisible, setEditModalVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   // 批量导入模态框
   const [bulkModalVisible, setbulkModalVisible] = useState(false);
-  const [editId, setEditId] = useState(undefined);
+  const [editId, setEditId] = useState<number | string>();
   const localUser = useUser();
-  const [popverContent, setpopverContent] = useState<ReactElement | string >('');
-
+  const [popverContent, setpopverContent] = useState<ReactElement | string>('');
+  const [isEditModal, setIsEditModal] = useState<boolean>(false);
   // 切换状态
   const editStatus = (record: AccountListItem) => new Promise((resolve, reject) => {
-      const { id, status } = record;
-      console.log('record', record);
+    const { id, status } = record;
+    console.log('record', record);
 
-      const checkStatus = status === 1 ? 0 : 1;
-      AccountStore.status({ id, status: checkStatus })
-        .then((res) => {
-          if (checkStatus === 1) {
-            message.success(t('ENABLE_SUCCESS_MESSAGE'));
-          } else {
-            message.success(t('DISENABLE_SUCCESS_MESSAGE'));
-          }
-          tableRef.current?.reload();
-          resolve(res);
-        })
-        .catch((err) => {
-          if (checkStatus === 1) {
-            message.error(t('ENABLE_FAILURE_MESSAGE'));
-          } else {
-            message.error(t('DISENABLE_FAILURE_MESSAGE'));
-          }
-          reject(err);
-        });
-    });
+    const checkStatus = status === 1 ? 0 : 1;
+    AccountStore.status({ id, status: checkStatus })
+      .then((res) => {
+        if (checkStatus === 1) {
+          message.success(t('ENABLE_SUCCESS_MESSAGE'));
+        } else {
+          message.success(t('DISENABLE_SUCCESS_MESSAGE'));
+        }
+        tableRef.current?.reload();
+        resolve(res);
+      })
+      .catch((err) => {
+        if (checkStatus === 1) {
+          message.error(t('ENABLE_FAILURE_MESSAGE'));
+        } else {
+          message.error(t('DISENABLE_FAILURE_MESSAGE'));
+        }
+        reject(err);
+      });
+  });
 
   /**
    * 新建账号
    */
   // 打开新建模态框
-  const handleShowCreateModal = () => {
-    setCreateModalVisible(true);
-  };
-  // 关闭新建模态框
-  const handleCloseCreateModal = useCallback(() => {
-    setCreateModalVisible(false);
-  }, []);
+  // const handleShowCreateModal = () => {
+  //   setCreateModalVisible(true);
+  // };
+  // // 关闭新建模态框
+  // const handleCloseCreateModal = useCallback(() => {
+  //   setCreateModalVisible(false);
+  // }, []);
   // 打开编辑模态框
-  const handleShowEditModal = (id: any) => {
-    setEditModalVisible(true);
-    setEditId(id);
+  const handleCreateAndEditModal = (isEdit: boolean, id?: number | string) => {
+    setIsModalOpen(true);
+    setIsEditModal(isEdit);
+    if (isEdit) {
+      setEditId(id);
+    }
   };
   // 关闭编辑模态框
-  const handleCloseEditModal = () => {
-    setEditModalVisible(false);
+  const handleCloseCreateAndEditModal = () => {
+    setIsModalOpen(false);
   };
 
   // 打开导入模态框
@@ -298,7 +301,7 @@ function Account() {
             aclsid="account.EDIT"
             key="edit"
             style={{ padding: 3 }}
-            onClick={() => handleShowEditModal(record.id)}
+            onClick={() => handleCreateAndEditModal(true, record.id)}
           >
             {t('EDIT')}
           </AuthButton>
@@ -419,11 +422,11 @@ function Account() {
           const isAll = String(params.status) === '100';
           const curStatus = isAll ? undefined : params.status;
           const departmentIdsStr = params.departmentIds === undefined
-              || params.departmentIds.length === 0
-              ? undefined
-              : (params.departmentIds as number[]).map(
-                (item: any) => item.value,
-              );
+            || params.departmentIds.length === 0
+            ? undefined
+            : (params.departmentIds as number[]).map(
+              (item: any) => item.value,
+            );
           const data = await AccountStore.list({
             page: params.current as number,
             pageSize: params.pageSize as number,
@@ -479,25 +482,26 @@ function Account() {
             aclsid="account.CREATE"
             icon={<PlusOutlined />}
             type="primary"
-            onClick={handleShowCreateModal}
+            onClick={() => handleCreateAndEditModal(false)}
           >
             {t('CREATE_ACCOUNT')}
           </AuthButton>,
         ]}
       />
-      {createModalVisible && (
+      {/* {createModalVisible && (
         <CreateAccountModal
           visible={createModalVisible}
           closeModal={handleCloseCreateModal}
           tableRef={tableRef}
         />
-      )}
-      {editModalVisible && (
+      )} */}
+      {isModalOpen && (
         <EditAccountModal
-          visible={editModalVisible}
+          visible={isModalOpen}
           tableRef={tableRef}
-          closeModal={handleCloseEditModal}
-          editId={editId}
+          closeModal={handleCloseCreateAndEditModal}
+          editId={editId as number}
+          isEdit={isEditModal}
         />
       )}
       <BulkImportModal

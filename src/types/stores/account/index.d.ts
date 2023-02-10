@@ -136,6 +136,7 @@ export interface ModalType {
   closeModal: () => void; // 关闭模态框
   tableRef:ActionType;
   editId?:number | undefined;
+  isEdit?:boolean;
 }
 export interface AccountMoreType {
   record:AccountListItem;
