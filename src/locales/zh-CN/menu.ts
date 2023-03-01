@@ -10,6 +10,7 @@ const menu = {
   SYSTEM: '系统管理',
   SYSTEM_MODULES: '模块管理',
   SYSTEM_ACCOUNT: '账号管理',
+  DEPARTMENT: '部门管理',
 
 };
 export default menu;

@@ -1,14 +1,16 @@
 // import { lazy } from 'react';
 import {
+  ApartmentOutlined,
   SettingOutlined,
   // ApartmentOutlined,
 } from '@ant-design/icons';
+import { lazy } from 'react';
 import SystemModulesRoute from './SystemModulesRoute';
 import AccountRoute from './AccountRoute';
 // import RoleListRoute from './RoleListRoute';
 // import SystemLogsRoute from './SystemLogsRoute';
 
-// const DepartmentList = lazy(() => import('@/modules/departments'));
+const DepartmentList = lazy(() => import('@/modules/departments'));
 // const WarmPromptTemplate = lazy(() => import('@/modules/WarmPrompt-template'));
 // const NoticeSetting = lazy(() => import('@/components/Notice/NoticeSetting'));
 
@@ -19,13 +21,13 @@ const SystemRoute = {
   routes: [
     SystemModulesRoute,
     AccountRoute,
-    // {
-    //   path: 'department',
-    //   icon: <ApartmentOutlined />,
-    //   name: 'DEPARTMENT',
-    //   permission: 'DEPARTMENT',
-    //   component: <DepartmentList />,
-    // },
+    {
+      path: 'department',
+      icon: <ApartmentOutlined />,
+      name: 'DEPARTMENT',
+      permission: 'DEPARTMENT',
+      component: <DepartmentList />,
+    },
     // RoleListRoute,
     // {
     //   name: 'MESSAGE_CENTER',

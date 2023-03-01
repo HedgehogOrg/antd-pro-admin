@@ -142,7 +142,7 @@ export default function CreateAccountModal(props: ModalType) {
     <Modal
       centered
       title={t('CREATE_ACCOUNT')}
-      visible={visible}
+      open={visible}
       onCancel={handleCancel}
       footer={null}
       destroyOnClose

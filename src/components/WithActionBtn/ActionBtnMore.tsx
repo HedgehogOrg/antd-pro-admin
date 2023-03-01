@@ -11,24 +11,28 @@
  * Description:
  */
 import { DownOutlined } from '@ant-design/icons';
-import { Button, Dropdown, Menu } from 'antd';
+import { Button, Dropdown, MenuProps } from 'antd';
 import { useIntl } from '@/utils/intl';
 
 export default function ActionBtnMore({ children, btnMoreStyle, popupContainer }: { children: JSX.Element | JSX.Element[], btnMoreStyle: any, popupContainer?:string }) {
   const t = useIntl('account');
   const newChildren = Array.isArray(children) ? children : [children];
-  const menu = (): JSX.Element => (
-    <Menu
-      items={newChildren.map((child: JSX.Element) => ({
-        key: child.key as string,
-        label: child,
-        type: child.type,
-      }))}
-    />
-  );
-
+  // const menu = (): JSX.Element => (
+  //   <Menu
+  //     items={newChildren.map((child: JSX.Element) => ({
+  //       key: child.key as string,
+  //       label: child,
+  //       type: child.type,
+  //     }))}
+  //   />
+  // );
+  const menu:MenuProps['items'] = newChildren.map((child: JSX.Element) => ({
+    key: child.key as string,
+    label: child,
+    type: child.type,
+  }));
   return (
-    <Dropdown overlay={menu()} trigger={['click']} getPopupContainer={() => (popupContainer ? document.getElementById(popupContainer) as HTMLElement : document.body)}>
+    <Dropdown menu={{ items: menu }} trigger={['click']} getPopupContainer={() => (popupContainer ? document.getElementById(popupContainer) as HTMLElement : document.body)}>
       <Button
         type="link"
         className="ant-dropdown-link"

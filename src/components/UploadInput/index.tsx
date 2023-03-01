@@ -405,7 +405,7 @@ function UploadInput(props: UploadInputProps, ref: any) {
 
       <Modal
         centered
-        visible={previewVisible}
+        open={previewVisible}
         footer={null}
         width={700}
         onCancel={onPreviewCancel}

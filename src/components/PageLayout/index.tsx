@@ -20,8 +20,8 @@ const LayoutSettingsDefault = {
 function PageLayout(props: { TopBarLogout: (props: any) => JSX.Element }) {
   const [settings, setSetting] = useState<Partial<ProSettings> | undefined>(LayoutSettingsDefault);
   const location = useLocation();
-  const defaultLogoSrc = '/assets/sumian_logo.png';
-  const defaultSystemName = 'SuMian';
+  const defaultLogoSrc = '/assets/logo.gif';
+  const defaultSystemName = "Diya's Admin";
   // 项目自定义顶部栏
   const { TopBarLogout } = props;
 

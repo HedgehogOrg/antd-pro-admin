@@ -29,8 +29,7 @@ import {
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import { observer } from 'mobx-react';
 import CustomProTable from '@/components/CustomProTable';
-// import CreateAccountModal from '@/modules/account/components/CreateAccountModal';
-import EditAccountModal from '@/modules/account/components/EditAccountModal';
+import CreateEditAccountModal from '@/modules/account/components/CreateEditAccountModal';
 import WithActionBtn from '@/components/WithActionBtn';
 import DeleteAccount from '../components/DeleteAccount';
 import ResetButton from '../components/ResetButton';
@@ -99,15 +98,8 @@ function Account() {
   /**
    * 新建账号
    */
-  // 打开新建模态框
-  // const handleShowCreateModal = () => {
-  //   setCreateModalVisible(true);
-  // };
-  // // 关闭新建模态框
-  // const handleCloseCreateModal = useCallback(() => {
-  //   setCreateModalVisible(false);
-  // }, []);
-  // 打开编辑模态框
+
+  // 打开新建编辑模态框
   const handleCreateAndEditModal = (isEdit: boolean, id?: number | string) => {
     setIsModalOpen(true);
     setIsEditModal(isEdit);
@@ -115,7 +107,7 @@ function Account() {
       setEditId(id);
     }
   };
-  // 关闭编辑模态框
+  // 关闭新建编辑模态框
   const handleCloseCreateAndEditModal = () => {
     setIsModalOpen(false);
   };
@@ -496,7 +488,7 @@ function Account() {
         />
       )} */}
       {isModalOpen && (
-        <EditAccountModal
+        <CreateEditAccountModal
           visible={isModalOpen}
           tableRef={tableRef}
           closeModal={handleCloseCreateAndEditModal}

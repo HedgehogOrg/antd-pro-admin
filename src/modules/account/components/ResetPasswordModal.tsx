@@ -38,7 +38,7 @@ export default function ResetPasswordModal(props: AccountMoreType) {
     <Modal
       centered
       title={t('RESET_PASSWORD')}
-      visible={visible}
+      open={visible}
       footer={null}
       destroyOnClose
       onCancel={closeModal}

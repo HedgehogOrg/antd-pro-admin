@@ -157,7 +157,7 @@ export default function BulkImportModal(props: ImportProps) {
       <Modal
         centered
         title={t('BULK_IMPORT')}
-        visible={visible}
+        open={visible}
         onCancel={closeModal}
         footer={[
           <Button key="submit" type="primary" onClick={handleImmediately}>
@@ -192,7 +192,7 @@ export default function BulkImportModal(props: ImportProps) {
       <Modal
         centered
         title={t('BULK_IMPORT')}
-        visible={progressModal}
+        open={progressModal}
         footer={false}
         closable={false}
         maskClosable={false}
@@ -204,7 +204,7 @@ export default function BulkImportModal(props: ImportProps) {
         />
       </Modal>
 
-      <Modal centered title={t('BULK_IMPORT')} visible={successResultModal} onCancel={closeSuccessResultModal} footer={false} maskClosable={false}>
+      <Modal centered title={t('BULK_IMPORT')} open={successResultModal} onCancel={closeSuccessResultModal} footer={false} maskClosable={false}>
         <div className={style['progress-success']}>
           <p>
             <CheckCircleFilled className={style['success-icon']} />
@@ -216,7 +216,7 @@ export default function BulkImportModal(props: ImportProps) {
       <Modal
         centered
         title={t('BULK_IMPORT')}
-        visible={failureResultModal}
+        open={failureResultModal}
         onCancel={() => {
           setFailureResultModal(false);
           finishedHandler();

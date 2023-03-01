@@ -1,0 +1,67 @@
+/*
+ * Author: Alvin
+ * Modified By: Alvin
+ * Created Date: 2022-04-14 17:58:53
+ * Last Modified: 2022-04-18 11:39:10
+ * Description:
+ */
+.view {
+  background-color: white;
+}
+
+.table {
+  .search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    padding: 16px 0 24px 16px;
+
+    .form {
+      float: left;
+      min-width: 430px;
+    }
+
+    .buttons {
+      float: right;
+      
+      .button:last-child {
+        margin-left: 16px;
+      }
+    }
+  }
+  
+  .divider {
+    height: 10px;
+    margin-left: -16px;
+    margin-right: -16px;
+    background-color: #F5F5F5FF;
+  }
+
+  .table-header {
+    display: flex;
+    height: 60px;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    background-color: white;
+    padding: 16px 0 16px 16px;
+  }
+
+  :global {
+    .ant-form-item {
+      margin-bottom: 0px;
+    }
+  }
+  
+  :global {
+    .ant-table-thead > tr > th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
+      width: 0px;
+    }
+  }
+}
+
+.remove-item {
+  color: red;
+}

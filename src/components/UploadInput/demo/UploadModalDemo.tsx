@@ -192,7 +192,7 @@ function UploadModalDemo(props: CompnentProps) {
     <WithConfigProvider>
       <Modal
         title="上传图片"
-        visible={visible}
+        open={visible}
         width={604}
         className={styles['upload-modal']}
         onCancel={handleCancel}

@@ -5,6 +5,7 @@ import common from './common';
 import error from './error';
 import modules from './modules';
 import account from './account';
+import department from './department';
 
 const message: LocalesType = {
   // 公用
@@ -14,6 +15,7 @@ const message: LocalesType = {
   error,
   modules,
   account,
+  department,
 };
 
 // 满足在 useIntl 的时候也可以使用公用模块

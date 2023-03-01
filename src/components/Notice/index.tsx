@@ -56,7 +56,7 @@ function Notice() {
         size="large"
         placement="right"
         onClose={onClose}
-        visible={drawerVisible}
+        open={drawerVisible}
         bodyStyle={{ padding: 0 }}
         title="消息通知"
         destroyOnClose

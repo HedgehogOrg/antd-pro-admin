@@ -10,7 +10,7 @@ export function SleepPrescriptionNotice(props: { data: any }) {
     const { data } = props;
     const key = `open${Date.now()}`;
     const btn = (
-      <Button type="primary" size="small" onClick={() => notification.config.close(key)}>
+      <Button type="primary" size="small" onClick={() => notification.close(key)}>
         知道了
       </Button>
     );
@@ -25,13 +25,13 @@ export function SleepPrescriptionNotice(props: { data: any }) {
       <div style={{ fontSize: 16, padding: 8 }}>
         <span style={{ color: '#2F54EB', fontSize: 16 }}>
           {' '}
-          {name }
+          {name}
           {' '}
         </span>
         获取了睡眠处方（处方时长：
         <span style={{ fontSize: 14 }}>
           {' '}
-          { secondToString(tempDuration) }
+          {secondToString(tempDuration)}
           {' '}
         </span>
         ）
@@ -41,11 +41,11 @@ export function SleepPrescriptionNotice(props: { data: any }) {
       <div>
         <p>
           上床时间:&emsp;
-          { secondToDate(data?.goToBedAt)}
+          {secondToDate(data?.goToBedAt)}
         </p>
         <p>
           起床时间:&emsp;
-          { secondToDate(data?.getUpAt) }
+          {secondToDate(data?.getUpAt)}
         </p>
       </div>
     );
