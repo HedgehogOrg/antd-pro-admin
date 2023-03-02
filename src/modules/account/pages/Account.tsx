@@ -72,7 +72,6 @@ function Account() {
   // 切换状态
   const editStatus = (record: AccountListItem) => new Promise((resolve, reject) => {
     const { id, status } = record;
-    console.log('record', record);
 
     const checkStatus = status === 1 ? 0 : 1;
     AccountStore.status({ id, status: checkStatus })

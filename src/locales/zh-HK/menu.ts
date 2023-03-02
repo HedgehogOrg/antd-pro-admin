@@ -1,6 +1,5 @@
 const menu = {
   // DASHBOARD: '概況',
-  // ROLE: '角色管理',
   // ROLE_LIST: '角色列表',
   // USER: '用戶管理',
   // USER_LIST: '用戶列表',
@@ -11,6 +10,6 @@ const menu = {
   SYSTEM_MODULES: '模塊管理',
   SYSTEM_ACCOUNT: '賬號管理',
   DEPARTMENT: '部門管理',
-
+  ROLE: '角色管理',
 };
 export default menu;

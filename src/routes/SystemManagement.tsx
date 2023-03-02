@@ -7,7 +7,7 @@ import {
 import { lazy } from 'react';
 import SystemModulesRoute from './SystemModulesRoute';
 import AccountRoute from './AccountRoute';
-// import RoleListRoute from './RoleListRoute';
+import RoleListRoute from './RoleListRoute';
 // import SystemLogsRoute from './SystemLogsRoute';
 
 const DepartmentList = lazy(() => import('@/modules/departments'));
@@ -28,7 +28,7 @@ const SystemRoute = {
       permission: 'DEPARTMENT',
       component: <DepartmentList />,
     },
-    // RoleListRoute,
+    RoleListRoute,
     // {
     //   name: 'MESSAGE_CENTER',
     //   permission: 'MESSAGE_CENTER',
