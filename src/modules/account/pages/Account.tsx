@@ -45,11 +45,11 @@ import SelectInput from '@/components/SelectInput';
 import AllrolesFetch from '@/apis/AllrolesFetch';
 import TreeSelectInput from '@/components/TreeSelectInput';
 import DepartmentTreeFetch from '@/apis/DepartmentTreeFetch';
-import SocketEvent from '@/socket/enums/AyncWorkWxEnum';
+// import SocketEvent from '@/socket/enums/AyncWorkWxEnum';
 import { WorkFlowFormStore } from '@/stores/work';
-import { asyncTasks } from '@/apis/common';
+// import { asyncTasks } from '@/apis/common';
 import webSocket from '@/socket';
-import WebsocketStore from '@/stores/websocket/WebsocketStore';
+// import WebsocketStore from '@/stores/websocket/WebsocketStore';
 import { useUser } from '@/hooks';
 
 const initSocket = async () => {
@@ -121,14 +121,14 @@ function Account() {
     setbulkModalVisible(false);
   }, []);
   // 同步企业微信
-  const syncWorkWx = () => {
-    WorkFlowFormStore.setSyncFlag('loading');
-    asyncTasks({ taskType: SocketEvent.SYNC_WORK_WECHAT_USER, visitorId: WebsocketStore.visitorId, data: {} })
-      .then(() => { })
-      .catch(() => {
-        WorkFlowFormStore.setSyncFlag('pending');
-      });
-  };
+  // const syncWorkWx = () => {
+  //   WorkFlowFormStore.setSyncFlag('loading');
+  //   asyncTasks({ taskType: SocketEvent.SYNC_WORK_WECHAT_USER, visitorId: WebsocketStore.visitorId, data: {} })
+  //     .then(() => { })
+  //     .catch(() => {
+  //       WorkFlowFormStore.setSyncFlag('pending');
+  //     });
+  // };
   const columns: ProColumns<AccountListItem>[] = [
     {
       title: t('NAME'),
@@ -451,7 +451,7 @@ function Account() {
         headerTitle={t('ACCOUNT_LIST')}
         toolBarRender={() => [
           <Popover content={popverContent}>
-            <AuthButton
+            {/* <AuthButton
               key="syncFlag"
               aclsid="account.SYNC_WORK_WX"
               type="primary"
@@ -460,7 +460,7 @@ function Account() {
               loading={WorkFlowFormStore.syncFlag === 'loading'}
             >
               {t('SYNC_WORK_WX')}
-            </AuthButton>
+            </AuthButton> */}
           </Popover>,
           <AuthButton
             key="import"
