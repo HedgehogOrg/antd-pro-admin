@@ -11,5 +11,7 @@ const menu = {
   SYSTEM_ACCOUNT: '賬號管理',
   DEPARTMENT: '部門管理',
   ROLE: '角色管理',
+  SYSTEM_LOGS: '系統日誌',
+
 };
 export default menu;

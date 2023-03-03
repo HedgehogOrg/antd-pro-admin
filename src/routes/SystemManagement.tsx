@@ -8,7 +8,7 @@ import { lazy } from 'react';
 import SystemModulesRoute from './SystemModulesRoute';
 import AccountRoute from './AccountRoute';
 import RoleListRoute from './RoleListRoute';
-// import SystemLogsRoute from './SystemLogsRoute';
+import SystemLogsRoute from './SystemLogsRoute';
 
 const DepartmentList = lazy(() => import('@/modules/departments'));
 // const WarmPromptTemplate = lazy(() => import('@/modules/WarmPrompt-template'));
@@ -47,7 +47,7 @@ const SystemRoute = {
     //     },
     //   ],
     // },
-    // SystemLogsRoute,
+    SystemLogsRoute,
 
   ],
 };

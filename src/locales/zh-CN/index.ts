@@ -7,6 +7,7 @@ import modules from './modules';
 import account from './account';
 import department from './department';
 import role from './role';
+import systemLogs from './systemLogs';
 
 const message: LocalesType = {
   // 公用
@@ -18,6 +19,7 @@ const message: LocalesType = {
   account,
   department,
   role,
+  systemLogs,
 };
 
 // 满足在 useIntl 的时候也可以使用公用模块
