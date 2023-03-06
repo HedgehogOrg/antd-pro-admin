@@ -47,7 +47,7 @@ export default function EditModal(props: Props) {
 
   const modalProps = {
     title: i18n('DELETED_DEPARTMENT'),
-    visible: isModalVisible,
+    open: isModalVisible,
     maskClosable: false,
     confirmLoading,
     onOk: handleOk,

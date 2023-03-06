@@ -178,7 +178,7 @@ function List(props: Props) {
     // 剔除空 children 数组属性
     const temItem = JSON.parse(JSON.stringify(item));
     const recurrence = (itemInner: Department | any) => {
-      if (itemInner && itemInner?.children.length > 0) {
+      if (itemInner && itemInner?.children?.length > 0) {
         itemInner?.children.forEach((val: Department) => {
           recurrence(val);
         });

@@ -389,10 +389,10 @@ function Account() {
           const res = data;
           res.forEach((_, index) => {
             res[index].createdAt *= 1000;
-            const departmentsName = res[index].departments.map(
+            const departmentsName = res[index].departments.length && res[index].departments.map(
               (item: any) => item.name,
             );
-            res[index].departments = departmentsName.join('、');
+            res[index].departments = departmentsName?.join('、');
             res[index].role = res[index].role === null ? '' : res[index].role.name;
             res[index].creator = res[index].creator === null ? '' : res[index].creator.name;
           });

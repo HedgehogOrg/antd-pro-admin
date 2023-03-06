@@ -56,7 +56,7 @@ export default function EditModal(props: Props) {
 
   const modalProps = {
     title: eidtType === 'create' ? i18n('CREATE_DEPARTMENT') : i18n('UPDATE_DEPARTMENT'),
-    visible: isModalVisible,
+    open: isModalVisible,
     maskClosable: false,
     onOk: handleOk,
     onCancel: handleCancel,
