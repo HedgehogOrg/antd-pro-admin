@@ -8,7 +8,7 @@ import { TmpPermissionTree, ButtonPermissionProps } from '@/types/system';
 import DeletePermission from './DeletePermission';
 import intl, { useIntl } from '@/utils/intl';
 import AuthButton from '@/components/AuthButton';
-import { Platform } from '@/enums';
+// import { Platform } from '@/enums';
 import { findDeep } from './util';
 
 const labelStyle:CSSProperties = {
@@ -16,7 +16,7 @@ const labelStyle:CSSProperties = {
 };
 
 function ButtonPermission({
-  permission, editRow, onDeleteOk, platform, aclsData,
+  permission, editRow, onDeleteOk, aclsData,
 }: ButtonPermissionProps) {
   const t = useIntl('modules');
   const {
@@ -64,8 +64,17 @@ function ButtonPermission({
       size="small"
       style={{ minWidth: 400 }}
       actions={[
-        <AuthButton aclsid={platform === Platform.CONSOLE ? 'modules.EDIT_CONSOLE' : 'modules.EDIT_ORGANIZATION'} type="link" key="edit" onClick={editPermission}>{intl.EDIT}</AuthButton>,
-        <DeletePermission deleteItem={permission} onAfterClick={deletePermission} onDeleteOk={onDeleteOk} key="delete" platform={platform} />,
+        <AuthButton
+          // aclsid={platform === Platform.CONSOLE ? 'modules.EDIT_CONSOLE' : 'modules.EDIT_ORGANIZATION'}
+          aclsid="modules.EDIT_CONSOLE"
+          type="link"
+          key="edit"
+          onClick={editPermission}
+        >
+          {intl.EDIT}
+
+        </AuthButton>,
+        <DeletePermission deleteItem={permission} onAfterClick={deletePermission} onDeleteOk={onDeleteOk} key="delete" />,
       ]}
     >
       <Descriptions title={name} column={1} bordered size="small">

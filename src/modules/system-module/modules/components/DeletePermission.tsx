@@ -3,14 +3,14 @@ import { ExclamationCircleFilled } from '@ant-design/icons';
 import confirm from 'antd/lib/modal/confirm';
 import { DeletePermissionProps } from '@/types/system/index.d';
 import permission from '@/apis/PermissionFetch';
-import permissionOrg from '@/apis/PermissionOrgFetch';
+// import permissionOrg from '@/apis/PermissionOrgFetch';
 import intl, { useIntl } from '@/utils/intl';
-import { PermissionType, Platform } from '@/enums';
+import { PermissionType } from '@/enums';
 import AuthButton from '@/components/AuthButton';
 import { ResourceId } from '@/types/common';
 
 function DeletePermission({
-  platform,
+  // platform,
   deleteItem,
   onDeleteOk,
   onAfterClick,
@@ -45,25 +45,36 @@ function DeletePermission({
       okText: intl.CONFIRM,
       cancelText: intl.CANCEL,
       onOk() {
-        if (platform === Platform.CONSOLE) {
-          permission.destroy(id as ResourceId).then(() => {
-            message.success(`${intl.DELETE}${intl.SUCCESS}`);
-            if (onDeleteOk) {
-              onDeleteOk();
-            }
-          });
-        } else {
-          permissionOrg.destroy(id as ResourceId).then(() => {
-            message.success(`${intl.DELETE}${intl.SUCCESS}`);
-            if (onDeleteOk) {
-              onDeleteOk();
-            }
-          });
-        }
+        // if (platform === Platform.CONSOLE) {
+        permission.destroy(id as ResourceId).then(() => {
+          message.success(`${intl.DELETE}${intl.SUCCESS}`);
+          if (onDeleteOk) {
+            onDeleteOk();
+          }
+        });
+        // }
+        // else {
+        //   permissionOrg.destroy(id as ResourceId).then(() => {
+        //     message.success(`${intl.DELETE}${intl.SUCCESS}`);
+        //     if (onDeleteOk) {
+        //       onDeleteOk();
+        //     }
+        //   });
+        // }
       },
     });
   };
-  return <AuthButton aclsid={platform === Platform.CONSOLE ? 'modules.DELETE_CONSOLE' : 'modules.DELETE_ORGANIZATION'} type="link" onClick={deleteRow} key="delete">{intl.DELETE}</AuthButton>;
+  return (
+    <AuthButton
+      // aclsid={platform === Platform.CONSOLE ? 'modules.DELETE_CONSOLE' : 'modules.DELETE_ORGANIZATION'}
+      aclsid="modules.DELETE_CONSOLE"
+      type="link"
+      onClick={deleteRow}
+      key="delete"
+    >
+      {intl.DELETE}
+    </AuthButton>
+  );
 }
 
 export default DeletePermission;

@@ -1,4 +1,4 @@
-import { Method, PermissionType, Platform } from '@/enums';
+import { Method, PermissionType } from '@/enums';
 import { Pages, Paginations } from '@/types/common';
 
 /**
@@ -51,30 +51,34 @@ export interface PermissionTree {
   type: PermissionType;
   menu: string;
   path: string;
-  children?: PermissionTree[];
+  children: PermissionTree[];
   action: string;
   icon: string;
   sort: number;
   method: Method;
   apiPath: string;
   status?: number;
+  aclIds: null | number[];
+  isShow: number;
 }
 /**
  * 选择菜单时用到
  */
 interface TmpPermissionTree extends PermissionTree {
   actions?: TmpPermissionTree[];
-  children?: TmpPermissionTree[];
+  children: TmpPermissionTree[];
   parents?: TmpPermissionTree[];
+  disabled?: boolean;
 }
 
 /**
  * 编辑权限
  */
 export interface EditPermissionProps {
-  platform: Platform;
+  // platform: Platform;
   isModalVisible: boolean;
   setIsModalVisible: Function;
+  aclsData: TmpPermissionTree[];
   treeData: TmpPermissionTree[];
   editItem: TmpPermissionTree;
   isEdit: boolean;
@@ -85,7 +89,7 @@ export interface EditPermissionProps {
  * 删除权限
  */
 export interface DeletePermissionProps {
-  platform: Platform;
+  // platform: Platform;
   deleteItem: TmpPermissionTree;
   onDeleteOk?: Function;
   onAfterClick?: Function;
@@ -95,7 +99,8 @@ export interface DeletePermissionProps {
  * 按钮权限属性
  */
 export interface ButtonPermissionProps {
-  platform: Platform;
+  // platform: Platform;
+  aclsData: TmpPermissionTree[];
   permission: PermissionTree;
   editRow: Function;
   onDeleteOk: Function;

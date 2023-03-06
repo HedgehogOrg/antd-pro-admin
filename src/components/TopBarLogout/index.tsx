@@ -2,6 +2,7 @@ import { Dropdown, Menu, Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import intl from 'react-intl-universal';
+// import type { MenuProps } from 'antd';
 import user from '@/stores/auth/UserStore';
 import SelectLanguage from '../SelectLanguage';
 

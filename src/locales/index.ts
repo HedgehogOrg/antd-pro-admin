@@ -1,9 +1,14 @@
 import { makeAutoObservable } from 'mobx';
 
+// 普通组件
 import zhCN from 'antd/lib/locale/zh_CN';
 import zhTW from 'antd/lib/locale/zh_TW';
+// 日期时间插件
 import 'dayjs/locale/zh-cn';
 import 'dayjs/locale/zh-tw';
+import 'moment/locale/zh-cn';
+import 'moment/locale/zh-tw';
+// 自定义文案
 import zhCNCustom from './zh-CN';
 import zhTWCustom from './zh-HK';
 import { LanguageType, LocalesType } from '@/types/language';

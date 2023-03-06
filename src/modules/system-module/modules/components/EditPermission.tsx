@@ -4,9 +4,9 @@ import {
 import { useEffect, useState } from 'react';
 import { EditPermissionProps, TmpPermissionTree, PermissionItemType } from '@/types/system';
 import permissionFetch from '@/apis/PermissionFetch';
-import permissionOrgFetch from '@/apis/PermissionOrgFetch';
+// import permissionOrgFetch from '@/apis/PermissionOrgFetch';
 import permission from '@/stores/permissions';
-import { Method, Platform, PermissionType } from '@/enums';
+import { Method, PermissionType } from '@/enums';
 import intl, { useIntl } from '@/utils/intl';
 import { trim } from '@/utils/utils';
 import { findDeep } from './util';
@@ -35,11 +35,17 @@ const tryEditParent = (callback: Function) => {
 const getParentLen = (value: string | number | any[] | undefined) => (Array.isArray(value) ? value.length : 0);
 
 // 获取对应的API
-const getAction = (isEdit: boolean, platform: Platform, newItem: PermissionItemType) => {
-  if (platform === Platform.CONSOLE) {
-    return isEdit ? permissionFetch.update(newItem.id, newItem) : permissionFetch.create(newItem);
-  } if (platform === Platform.ORGANIZATION) {
-    return isEdit ? permissionOrgFetch.update(newItem.id, newItem) : permissionOrgFetch.create(newItem);
+const getAction = (isEdit: boolean, newItem: PermissionItemType) => {
+  // if (platform === Platform.CONSOLE) {
+  // return isEdit ? permissionFetch.update(newItem.id, newItem) : permissionFetch.create(newItem);
+  // } if (platform === Platform.ORGANIZATION) {
+  //   return isEdit ? permissionOrgFetch.update(newItem.id, newItem) : permissionOrgFetch.create(newItem);
+  // }
+
+  if (isEdit) {
+    permissionFetch.update(newItem.id, newItem);
+  } else {
+    permissionFetch.create(newItem);
   }
   return Promise.resolve();
 };
@@ -53,7 +59,7 @@ const methodOptions = [
 ].map((method) => ({ label: method, value: method }));
 
 function EditAcls({
-  platform,
+  // platform,
   isModalVisible,
   setIsModalVisible,
   treeData,
@@ -147,7 +153,7 @@ function EditAcls({
 
       setLoading(true);
       // 获取对应的操作api
-      const action = getAction(isEdit, platform, newItem);
+      const action = getAction(isEdit, newItem);
       // 提交
       await action.finally(() => setLoading(false));
       setIsModalVisible(false);
@@ -175,8 +181,12 @@ function EditAcls({
       // 需要用户在浏览器点击允许
       const result = await navigator.clipboard.readText();
       try {
-        const { name, description, action, method, apiPath, isShow, parentId, parents, type: tmpType } = JSON.parse(result);
-        setEditItem({ name, description, action, method, apiPath, isShow, parentId, parents, type: tmpType } as TmpPermissionTree);
+        const {
+          name, description, action, method, apiPath, isShow, parentId, parents, type: tmpType,
+        } = JSON.parse(result);
+        setEditItem({
+          name, description, action, method, apiPath, isShow, parentId, parents, type: tmpType,
+        } as TmpPermissionTree);
         navigator.clipboard.writeText('');
       } catch (error) {
         console.warn('粘贴板没有复制到合规的权限数据');
@@ -238,7 +248,11 @@ function EditAcls({
             {/* 编辑提交需要带id */}
             <Input />
           </Form.Item>
-          <Form.Item name="parentId" label={<span onClick={() => tryEditParent(() => setAllowEditParent(true))}>{t('PARENTS')}</span>}>
+          <Form.Item
+            name="parentId"
+            // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+            label={<span onClick={() => tryEditParent(() => setAllowEditParent(true))}>{t('PARENTS')}</span>}
+          >
             <Cascader
               options={menuTree}
               fieldNames={{ label: 'name', value: 'id', children: 'children' }}

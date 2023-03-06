@@ -2,14 +2,14 @@ import { useRef, useState } from 'react';
 import { Space } from 'antd';
 import { ActionType, ColumnsState, ProColumns } from '@ant-design/pro-table';
 import { PlusOutlined } from '@ant-design/icons';
-import { CustomProTable } from '@/components';
+import CustomProTable from '@/components/CustomProTable';
 import { ModulePanelProps, PermissionTree, TmpPermissionTree } from '@/types/system';
 import AuthButton from '@/components/AuthButton';
 import permission from '@/stores/permissions';
 import EditPermission from './EditPermission';
 import DeletePermission from './DeletePermission';
 import ButtonPermission from './ButtonPermission';
-import { Method, PermissionType, Platform } from '@/enums';
+import { Method, PermissionType } from '@/enums';
 import intl, { useIntl } from '@/utils/intl';
 import { addParents, sort } from '@/utils/utils';
 import { disableMenuCheckbox } from './util';
@@ -82,10 +82,9 @@ const emptyPermissionTree: TmpPermissionTree = {
 
 function ModulePanel(props: ModulePanelProps) {
   // 配置是哪个平台
-  const { platform, treeListApi } = props;
+  const { treeListApi } = props;
   // 多语言
   const t = useIntl('modules');
-
   // 是否显示编辑弹框
   const [isModalVisible, setIsModalVisible] = useState(false);
   // 编辑的内容
@@ -160,14 +159,20 @@ function ModulePanel(props: ModulePanelProps) {
       search: false,
       render: (text: any, record: TmpPermissionTree) => [
         <AuthButton
-          aclsid={platform === Platform.CONSOLE ? 'modules.EDIT_CONSOLE' : 'modules.EDIT_ORGANIZATION'}
+          // aclsid={platform === Platform.CONSOLE ? 'modules.EDIT_CONSOLE' : 'modules.EDIT_ORGANIZATION'}
+          aclsid="modules.EDIT_CONSOLE"
           type="link"
           onClick={() => editRow(record)}
           key="edit"
         >
           {intl.EDIT}
         </AuthButton>,
-        <DeletePermission deleteItem={record} onDeleteOk={onEditOk} key="delete" platform={platform} />,
+        <DeletePermission
+          deleteItem={record}
+          onDeleteOk={onEditOk}
+          key="delete"
+          // platform={platform}
+        />,
       ],
     },
     {
@@ -185,7 +190,7 @@ function ModulePanel(props: ModulePanelProps) {
                 permission={item}
                 editRow={editRow}
                 onDeleteOk={onEditOk}
-                platform={platform}
+                // platform={platform}
               />
             )) : '-'}
           </Space>
@@ -213,6 +218,7 @@ function ModulePanel(props: ModulePanelProps) {
         }}
         request={async (params) => {
           const acls = addParents(await treeListApi());
+
           const menuTree = menuTreeFilter(JSON.parse(JSON.stringify(acls)));
 
           // 禁止选中菜单
@@ -232,7 +238,8 @@ function ModulePanel(props: ModulePanelProps) {
         }}
         toolBarRender={() => [
           <AuthButton
-            aclsid={platform === Platform.CONSOLE ? 'modules.NEW_CONSOLE' : 'modules.NEW_ORGANIZATION'}
+            // aclsid={platform === Platform.CONSOLE ? 'modules.NEW_CONSOLE' : 'modules.NEW_ORGANIZATION'}
+            aclsid="modules.NEW_CONSOLE"
             type="primary"
             onClick={openEditPanel}
           >
@@ -243,7 +250,7 @@ function ModulePanel(props: ModulePanelProps) {
       />
       {/* 编辑弹窗 */}
       <EditPermission
-        platform={platform}
+        // platform={platform}
         isModalVisible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
         treeData={treeData}

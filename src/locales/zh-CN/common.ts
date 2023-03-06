@@ -5,6 +5,7 @@ const common = {
   ACTION: '操作',
   EDIT: '编辑',
   DELETE: '删除',
+  CREATE: '新增',
   SAVE: '保存',
   REMARK: '备注',
   STATUS: '状态',
@@ -20,6 +21,16 @@ const common = {
   NO_LIMIT: '全部',
   DETAIL: '详情',
   MORE: '更多',
+  PROMPT: '提示',
+  LIBRARY_ORGANIZATION: '入库组织',
+  BULK_LIBRARY: '批量入库',
+  BULK_IMPORT: '批量导入',
+  DELETE_SUCCESS_MESSAGE: '删除药物成功',
+  DELETE_MODAL_MESSAGE: '您确定要删除当前所选药物',
+  DELETE_ACCOUNT: '删除账号',
+  LOOK_DETAIL: '查看详情',
+  SYNC_WORK_WX: '同步企业微信',
+  LIBRARY_SUCCESS: '入库组织成功',
 };
 
 export default common;

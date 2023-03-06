@@ -1,16 +1,16 @@
-import { Tabs } from 'antd';
+// import { Tabs } from 'antd';
 import permissionFetch from '@/apis/PermissionFetch';
 // import permissionOrgFetch from '@/apis/PermissionOrgFetch';
 import { ModulePanelProps } from '@/types/system';
 import ModulePanel from '../components/ModulePanel';
-import { useIntl } from '@/utils/intl';
+// import { useIntl } from '@/utils/intl';
 // import { Platform } from '@/enums';
 
-const tabsStyle = {
-  paddingLeft: '20px',
-  backgroundColor: 'white',
-  marginBottom: '0',
-};
+// const tabsStyle = {
+//   paddingLeft: '20px',
+//   backgroundColor: 'white',
+//   marginBottom: '0',
+// };
 
 const consoleProps: ModulePanelProps = {
   // platform: Platform.CONSOLE,
@@ -23,17 +23,19 @@ const consoleProps: ModulePanelProps = {
 // };
 
 function Modules() {
-  const t = useIntl('modules');
+  // const t = useIntl('modules');
   return (
     <div>
-      <Tabs defaultActiveKey="1" tabBarStyle={tabsStyle}>
+      {/* <Tabs defaultActiveKey="1" tabBarStyle={tabsStyle}>
         <Tabs.TabPane tab={t('PLATFORM_CONSOLE')} key="1">
           <ModulePanel {...consoleProps} />
-        </Tabs.TabPane>
-        {/* <Tabs.TabPane tab={t('PLATFORM_ORGANIZATION')} key="2">
+        </Tabs.TabPane> */}
+      {/* <Tabs.TabPane tab={t('PLATFORM_ORGANIZATION')} key="2">
           <ModulePanel {...organizationProps} />
         </Tabs.TabPane> */}
-      </Tabs>
+      {/* </Tabs> */}
+      <ModulePanel {...consoleProps} />
+
     </div>
   );
 }

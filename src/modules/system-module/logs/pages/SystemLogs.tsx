@@ -17,7 +17,7 @@ import { ProColumns } from '@ant-design/pro-table';
 import { SystemLogType } from '@/types/system/logs';
 import intl, { useIntl } from '@/utils/intl';
 import { getSystemLogs } from '@/apis/systemLogs';
-import { CustomProTable } from '@/components';
+import CustomProTable from '@/components/CustomProTable';
 import PermissionFetch from '@/apis/PermissionFetch';
 
 const { RangePicker } = DatePicker;
@@ -46,6 +46,8 @@ function SystemLogs() {
   useEffect(() => {
     PermissionFetch.treeList({ type: 1 }).then((consoleMenu) => {
       setMenuTree(consoleMenu);
+    }).catch((err) => {
+      console.log(err);
     });
   }, []);
 

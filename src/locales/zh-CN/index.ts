@@ -3,6 +3,7 @@ import login from './login';
 import menu from './menu';
 import common from './common';
 import error from './error';
+import modules from './modules';
 
 const message: LocalesType = {
   // 公用
@@ -10,6 +11,8 @@ const message: LocalesType = {
   login,
   menu,
   error,
+  modules,
+
 };
 
 // 满足在 useIntl 的时候也可以使用公用模块
